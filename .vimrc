@@ -824,7 +824,7 @@ endif
 "{{{ Runtime Paths
 
  if has('vim_starting')
-   set runtimepath+=~/.vim/neobundle/
+   set runtimepath+=~/.vim/bundle/neobundle.vim/
    call neobundle#rc(expand('~/.vim/bundle/'))
  endif
 
@@ -868,6 +868,136 @@ filetype on
 
 " Git Plugin (Standard Plugin)
 autocmd MyAutoCommands FileType gitcommit DiffGitCached
+
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'h1mesuke/vim-alignta'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taku-o/vim-alice-map'
+NeoBundle 'soh335/vim-ref-pman'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'groenewege/vim-less'
+NeoBundle 'mileszs/ack.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'sgur/ctrlp-extensions.vim'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'othree/html5.vim'
+NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'Javascript-Indentation'
+NeoBundle 'matchit.zip'
+NeoBundle 'SQLUtilities'
+NeoBundle 'grep.vim'
+NeoBundle 'nginx.vim'
+NeoBundle 'django.vim'
+NeoBundle 'vim-scripts/HTML-AutoCloseTag'
+NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'gregsexton/gitv'
+if !has('mac') || has('mac') && has('gui')
+    NeoBundle 'pyflakes.vim'
+endif
+
+" ctrlp
+set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/.sass-cache/*,.DS_Store,*.pyc,*~
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$',
+\ }
+let g:ctrlp_max_height = &lines
+" 1 - the parent directory of the current file.
+" 2 - the nearest ancestor that contains one of these directories/files
+" 0 - don窶冲 manage working directory
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_extensions = ['cmdline', 'yankring', 'menu']
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+
+" Disable neocomplcache on special cases.
+let g:neocomplcache_lock_buffer_name_pattern = '\[Command Line\]'
+
+let g:neocomplcache_snippets_dir = '~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets'
+" let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.
+imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+
+" unite.vim
+let g:unite_source_file_mru_limit = 200
+let g:unite_source_file_mru_filename_format = ""
+let g:unite_source_file_mru_time_format = ""
+
+" Narrow vertial window, default width is 90.
+let g:unite_winwidth = 40
+
+function! s:UniteSettings()
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
+  imap <buffer> jj <Plug>(unite_insert_leave)
+"  nmap <buffer> <Tab> <Nop>
+"  imap <buffer> <Tab> <Nop>
+endfunction
+
+augroup MyUnite
+  autocmd!
+  autocmd FileType unite call s:UniteSettings()
+augroup END
+
+nmap f [Unite]
+nnoremap [Unite] <Nop>
+
+let s:file_rec_source = executable('ls') && unite#util#has_vimproc() ? "file_rec/async" : "file_rec"
+
+execute printf('nnoremap <silent> [Unite]f :<C-u>Unite -buffer-name=files -start-insert buffer_tab file_mru file %s<CR>', s:file_rec_source)
+nnoremap <silent> [Unite]k :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
+nnoremap <silent> [Unite]l :<C-u>Unite -start-insert -buffer-name=files file_mru<CR>
+nnoremap <silent> [Unite]p :<C-u>Unite poslist<CR>
+
+function! s:ExecuteCommandOnCR(command)
+  if &buftype == ''
+    execute a:command
+  else
+    call feedkeys("\r", 'n')
+  endif
+endfunction
+
+nnoremap <silent> <CR> :<C-u>call <SID>ExecuteCommandOnCR('Unite -buffer-name=files buffer_tab')<CR>
+
+" unite-grep
+let g:unite_source_grep_max_candidates = 200
+let g:unite_source_grep_default_opts = "-HnEi"
+  \ . " --exclude='*.svn*'"
+  \ . " --exclude='*.log*'"
+  \ . " --exclude='*tmp*'"
+  \ . " --exclude-dir='**/tmp'"
+  \ . " --exclude-dir='CVS'"
+  \ . " --exclude-dir='.svn'"
+  \ . " --exclude-dir='.git'"
+
+nnoremap <silent> <expr> [Unite]g printf(':<C-u>Unite grep:%s:-R:%s -no-quit<CR>', expand(getcwd()), expand("<cword>"))
+
+" unite-outline
+let g:unite_source_outline_indent_width = 4
+nnoremap <silent> [unite]o :<C-u>Unite -start-insert outline<CR>
+nnoremap <silent> <C-o> :<C-u>Unite -start-insert outline<CR>
+
+" vim-powerline
+let g:Powerline_symbols = 'fancy'
+
+" zen-coding
+let g:user_zen_settings = {'indentation' : '  '}
 
 "}}}
 

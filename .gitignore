@@ -3,6 +3,6 @@
 local
 tags
 tags-*
-doc/tags
-doc/tags-*
+/.vim/bundle/**/*
+!/.vim/bundle/neobundle.vim
 /.vim/.netrwhist
