@@ -810,6 +810,11 @@ endif
 
 "{{{ Runtime Paths
 
+ if has('vim_starting')
+   set runtimepath+=~/.vim/neobundle/
+   call neobundle#rc(expand('~/.vim/bundle/'))
+ endif
+
 " Add runtime paths (Using pathogen.vim)
 if !exists('s:loaded_vimrc')
   set runtimepath&
