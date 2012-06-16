@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# http://d.hatena.ne.jp/japanrock_pg/20110412/1302600276
+
+for i in {0..9}; do nohup `while :; do echo 1 > /dev/null; done;` & done
