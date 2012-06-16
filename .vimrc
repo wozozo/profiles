@@ -318,6 +318,19 @@ augroup END
 
 "{{{ Key Mappings
 
+noremap <C-e> $
+noremap <C-a> ^
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+vnoremap < <gv
+vnoremap > >gv
+vnoremap v $h
+
+" pbcopy
+nmap _ :.w !nkf -Ws\|pbcopy<CR><CR>
+vmap _ :w !nkf -Ws\|pbcopy<CR><CR>
+
+nnoremap <ESC><ESC> :nohlsearch<CR>
+
 " Leaders
 "{{{
 " Define <Leader>, <LocalLeader>
