@@ -828,36 +828,6 @@ endif
    call neobundle#rc(expand('~/.vim/bundle/'))
  endif
 
-" Add runtime paths (Using pathogen.vim)
-if !exists('s:loaded_vimrc')
-  set runtimepath&
-
-  " Add ~/.vim to &runtimepath for Windows
-  if s:has_win
-    set runtimepath+=$HOME/.vim
-  endif
-
-  call pathogen#runtime_append_all_bundles()
-  call pathogen#helptags()
-endif
-
-function! s:SourceRuntimeBundleScripts() "{{{
-  for dir in pathogen#split(&runtimepath)
-    " Ignore all blank paths in runtimepath, which may be paths created by
-    " git-submodule but not updated yet.
-    if empty(globpath(dir, "*"))
-      continue
-    endif
-    for vimfile in [dir . '.vim', dir . '/.vimrc']
-      if filereadable(vimfile)
-        execute "source " . vimfile
-      endif
-    endfor
-  endfor
-endfunction "}}}
-
-call s:SourceRuntimeBundleScripts()
-
 " Re-enable filetype plugin for ftdetect directory of each runtimepath
 filetype off
 filetype on
