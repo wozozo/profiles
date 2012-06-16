@@ -100,6 +100,7 @@ init_aliases() {
 
 	# ls
 	alias ls-al="ls -al"
+	alias l="ls -l"
 	alias ll="ls -al"
 
 	# subversion related

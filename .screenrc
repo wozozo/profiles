@@ -15,7 +15,7 @@ termcapinfo xterm* ti@:te@
 # Turn on bell everywhere
 vbell off
 # Change control key from C-a to C-t because C-a is for line-beginning on zsh
-escape ^t^t
+escape ^Jj
 # }}}
 
 ## Status line {{{
@@ -30,5 +30,14 @@ escape ^t^t
 hardstatus alwayslastline "%{= wk} %-w%{=b bw}%n %t%{-}%+w %= %{= wb}%y/%m/%d %c "
 
 # }}}
+
+bind n screen
+bind h prev
+bind j next
+bind l windowlist
+bind x remove
+bind X remove
+bind s split
+bind t focus
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:

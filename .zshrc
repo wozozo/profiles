@@ -47,21 +47,11 @@ colors
 setopt prompt_subst
 
 # Prompt strings.
-get_prompt() {
-	local color_table
-	color_table=(red green yellow blue magenta cyan white)
+PROMPT='
+%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}
+'
+# $(virtualenv_info)'
 
-	get_prompt_color_indexes
-	local user_color=${color_table[${result[1]}]}
-	local host_color=${color_table[${result[2]}]}
-	local shlvl_color=${color_table[${result[3]}]}
-
-	# NOTE To preserve backward compatibility, here we're not using %F and %f.
-	# See RPROMPT for vcs_info.
-	result="%{$fg[yellow]%}%T%{$reset_color%} %{$fg[${user_color}]%}%n%{$reset_color%}@%{$fg[${host_color}]%}%m%{$reset_color%}:%{$fg[${shlvl_color}]%}%2~%{$reset_color%} %(!.#.$) "
-}
-get_prompt
-PROMPT=$result
 
 # Show current directory on right prompt.
 RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
