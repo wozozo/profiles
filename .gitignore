@@ -3,4 +3,5 @@
 local
 tags
 tags-*
+/.vim/bundle/*/
 /.vim/.netrwhist
