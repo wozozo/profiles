@@ -33,3 +33,5 @@
 [gui]
 	fontui = -family \"ヒラギノ角ゴ Pro W3\" -size 12 -weight normal -slant roman -underline 0 -overstrike 0
 	fontdiff = -family Osaka−等幅 -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+[core]
+	excludesfile = /home/wozozo/.gitignore
