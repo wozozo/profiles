@@ -30,6 +30,9 @@ init_paths() {
 	# profile bin path
 	export PATH="$PATH:$profiles/bin"
 
+	# local bin path
+	export PATH="$PATH:~/local/bin"
+
 	if [ -x /usr/libexec/path_helper ]; then
 		# path_helper needs MANPATH env to assign values.
 		export MANPATH=$MANPATH
