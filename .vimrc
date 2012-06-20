@@ -20,85 +20,10 @@ augroup END
 
 "{{{ Encodings and Japanese
 
-function! s:SetEncoding() "{{{
-  " As default, we're using UTF-8, of course.
-  set encoding=utf-8
-
-  " Done by here, if it's MacVim which can't change &termencoding.
-  if has('gui_macvim')
-    return
-  endif
-
-  " Using &encoding as default.
-  set termencoding=
-  " If LANG shows EUC or Shift-JIS, use it for termencoding.
-  if $LANG =~# 'eucJP'
-    set termencoding=euc-jp
-  elseif $LANG =~# 'SJIS'
-    set termencoding=cp932
-  endif
-
-  " On Windows, we need to set encoding=japan or force to use cp932.
-  " Not tested yet because I'm not using Windows.
-  if !has('gui_running') && (&term == 'win32' || &term == 'win64')
-    set termencoding=cp932
-    set encoding=japan
-  elseif has('gui_running') && s:has_win
-    set termencoding=cp932
-  endif
-endfunction "}}}
-
-function! s:SetFileEncodings() "{{{
-  if !has('iconv')
-    return
-  endif
-
-  let enc_eucjp = 'euc-jp'
-  let enc_jis = 'iso-2022-jp'
-
-  " Check availability of iconv library.
-  " Try converting the cahrs defined in EUC JIS X 0213 to CP932
-  " to make sure iconv supprts JIS X 0213 or not.
-  if iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
-    let enc_eucjp = 'euc-jisx0213,euc-jp'
-    let enc_jis = 'iso-2022-jp-3'
-  endif
-
-  let value = 'ucs-bom'
-  if &encoding !=# 'utf-8'
-    let value = value . ',' . 'ucs-2le' . ',' . 'ucs-2'
-  endif
-
-  let value = value . ',' . enc_jis
-
-  if &encoding ==# 'utf-8'
-    let value = value . ',' . enc_eucjp . ',' . 'cp932'
-  elseif &encoding ==# 'euc-jp' || &encoding ==# 'euc-jisx0213'
-    " Reset existing values
-    let value = enc_eucjp . ',' . 'utf-8' . ',' . 'cp932'
-  else " assuming &encoding ==# 'cp932'
-    let value = value . ',' . 'utf-8' . ',' . enc_eucjp
-  endif
-  let value = value . ',' . &encoding
-
-  if has('guess_encode')
-    let value = 'guess' . ',' . value
-  endif
-
-  let &fileencodings = value
-endfunction "}}}
-
-" Make sure the file is not including any Japanese in ISO-2022-JP, use encoding for fileencoding.
-" https://github.com/Shougo/shougo-s-github/blob/master/vim/.vimrc
-function! s:SetFileEncoding() "{{{
-  if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
-    let &fileencoding = &encoding
-  endif
-endfunction "}}}
-
-call s:SetEncoding()
-call s:SetFileEncodings()
-autocmd MyAutoCommands BufReadPost * call <SID>SetFileEncoding()
+set fileformats=unix,dos,mac                     " trying EOL formats
+set termencoding=utf-8                           " Encoding used for the terminal.
+set encoding=utf-8                               " character encoding used inside Vim.
+set fileencodings=utf-8,cp932,euc-jp,iso-2022-jp " list of character encodings considered when starting to edit an existing file.
 
 " Address the issue for using □ or ●.
 " NOTE We also need to apply a patch for Mac OS X Terminal.app
@@ -273,6 +198,13 @@ filetype plugin on
 " Enable indent.
 filetype indent on
 
+augroup SkeletonAu
+  autocmd!
+  autocmd BufNewFile *.html 0r $HOME/.vim/skeleton/html.skel
+  autocmd BufNewFile *.py 0r $HOME/.vim/skeleton/python.skel
+  autocmd BufNewFile *.php 0r $HOME/.vim/skeleton/php.skel
+augroup END
+
 augroup MyAutoCommands
   " Disable automatically insert comment.
   " See :help fo-table
@@ -282,7 +214,7 @@ augroup MyAutoCommands
   autocmd FileType ruby,eruby,haml setlocal tabstop=2 shiftwidth=2 expandtab nowrap
   autocmd FileType vim setlocal tabstop=2 shiftwidth=2 expandtab nowrap
   autocmd FileType actionscript setlocal fileencoding=utf-8 tabstop=4 shiftwidth=4 noexpandtab nowrap
-  autocmd FileType php setlocal tabstop=2 shiftwidth=2 expandtab nowrap
+  autocmd FileType php setlocal tabstop=4 shiftwidth=4 expandtab nowrap
   autocmd FileType thrift setlocal tabstop=2 shiftwidth=2 expandtab nowrap
   autocmd FileType c,cpp,objc setlocal tabstop=4 shiftwidth=4 expandtab nowrap
 
@@ -299,6 +231,10 @@ augroup MyAutoCommands
   autocmd BufNewFile,BufRead *.pp setlocal filetype=puppet
   autocmd BufNewFile,BufRead *.mm setlocal filetype=cpp
   autocmd BufNewFile,BufRead *.thrift setlocal filetype=thrift
+  autocmd BufNewFile,BufRead *.twig setlocal filetype=htmldjango
+  autocmd BufNewFile,BufRead *.scss setlocal filetype=scss
+  autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
+  autocmd BufNewFile,BufRead *.less setlocal filetype=less
 
   " Support grepedit comamnd. See ~/.profiles/bin/grepedit
   autocmd BufRead grepedit.tmp.* setlocal filetype=grepedit
@@ -815,7 +751,7 @@ endif
 
 " If terminal supports 256 colors or GUI, set colorscheme.
 if $TERM =~? '256' || has('gui_running')
-  colorscheme molokai
+  colorscheme hemisu
   "colorscheme twilight
 endif
 
@@ -889,7 +825,7 @@ let g:ctrlp_max_height = &lines
 " 2 - the nearest ancestor that contains one of these directories/files
 " 0 - don窶冲 manage working directory
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_extensions = ['cmdline', 'yankring', 'menu']
+let g:ctrlp_extensions = ['cmdline', 'menu']
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1

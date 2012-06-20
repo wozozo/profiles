@@ -12,6 +12,9 @@ init_paths
 # Initialize EDITOR.
 init_editor
 
+# Initialize LANG.
+init_lang
+
 ## }}}
 
 ## Aliases {{{
@@ -48,13 +51,12 @@ setopt prompt_subst
 
 # Prompt strings.
 PROMPT='
-%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}
-'
+%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
 # $(virtualenv_info)'
 
 
 # Show current directory on right prompt.
-RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
+# RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
 
 # Change directory if the command doesn't exist.
 setopt auto_cd
@@ -157,7 +159,8 @@ if autoload +X vcs_info 2> /dev/null; then
 		[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 	}
 	precmd_functions+=precmd_vcs_info
-	RPROMPT="${RPROMPT}%1(V. %F{green}%1v%f.)"
+	PROMPT="${PROMPT}%1(V. %F{green}%1v%f.)
+"
 fi
 
 # }}}
@@ -270,28 +273,33 @@ bindkey -M viins '\C-t' transpose-words
 
 ## Zsh Terminal Title Changes {{{
 
-case "${TERM}" in
-screen*|ansi*)
-	preexec_term_title() {
-		print -n "\ek$1\e\\"
-	}
-	preexec_functions+=preexec_term_title
-	precmd_term_title() {
-		print -n "\ek$(whoami)@$(hostname -s):$(basename "${PWD}")\e\\"
-	}
-	precmd_functions+=precmd_term_title
-	;;
-xterm*)
-	preexec_term_title() {
-		print -n "\e]0;$1\a"
-	}
-	preexec_functions+=preexec_term_title
-	precmd_term_title() {
-		print -n "\e]0;$(basename "${PWD}")\a"
-	}
-	precmd_functions+=precmd_term_title
-	;;
-esac
+# case "${TERM}" in
+# screen*|ansi*)
+# 	preexec_term_title() {
+# 		print -n "\ek$1\e\\"
+# 	}
+# 	preexec_functions+=preexec_term_title
+# 	precmd_term_title() {
+# 		print -n "\ek$(whoami)@$(hostname -s):$(basename "${PWD}")\e\\"
+# 	}
+# 	precmd_functions+=precmd_term_title
+# 	;;
+# xterm*)
+# 	preexec_term_title() {
+# 		print -n "\e]0;$1\a"
+# 	}
+# 	preexec_functions+=preexec_term_title
+# 	precmd_term_title() {
+# 		print -n "\e]0;$(basename "${PWD}")\a"
+# 	}
+# 	precmd_functions+=precmd_term_title
+# 	;;
+# esac
+
+# clear Terminal.app title
+precmd() {
+    echo -ne "\033]0;\007"
+}
 
 # }}}
 
