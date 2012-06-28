@@ -29,7 +29,7 @@
 	interactive = auto
 	grep = auto
 [core]
-	excludesfile = /home/wozozo/.gitignore
+	excludesfile = $HOME/.gitignore
 [i18n]
 	commitEncoding = UTF-8
 	logOutputEncoding = UTF-8

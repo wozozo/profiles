@@ -143,16 +143,12 @@ init_aliases() {
 	alias wget="wget -U Mozilla --no-check-certificate"
 	alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
 	alias rand="ruby -ropenssl -e 'print OpenSSL::Digest::SHA1.hexdigest(rand().to_s)'"
+	alias t="tree -C"
 
 	# awk
 	for i in 1 2 3 4 5 6 7 8 9; do
 		alias a$i="awk '{print \$$i}'"
 	done
-
-	# Terminal.app related
-	if type 'term' > /dev/null 2>&1; then
-		alias t="term -t"
-	fi
 
 	# if we have vim, vi is vim also shotcut v is vim.
 	if type 'vim' > /dev/null 2>&1; then

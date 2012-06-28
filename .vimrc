@@ -751,7 +751,7 @@ endif
 
 " If terminal supports 256 colors or GUI, set colorscheme.
 if $TERM =~? '256' || has('gui_running')
-  colorscheme hemisu
+  colorscheme molokai
   "colorscheme twilight
 endif
 

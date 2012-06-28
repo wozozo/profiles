@@ -171,6 +171,12 @@ fi
 autoload -Uz compinit
 compinit
 
+. $HOME/.profiles/bin/cdd
+
+chpwd() {
+    _cdd_chpwd
+}
+
 # Colors completions.
 zstyle ':completion:*' list-colors ''
 
