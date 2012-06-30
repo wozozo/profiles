@@ -210,4 +210,8 @@ init_nodebrew() {
 	return 1
 }
 
+virtualenv_info() {
+	[ $VIRTUAL_ENV ] && echo ' ('`basename $VIRTUAL_ENV`')'
+}
+
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:ft=sh:
