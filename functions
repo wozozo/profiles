@@ -150,6 +150,11 @@ init_aliases() {
 		alias a$i="awk '{print \$$i}'"
 	done
 
+	# user agent
+	alias curlh="curl -s -L -D - -o /dev/null $@"
+	alias wgeth="wget -S -q -O /dev/null $@"
+	alias lwph="lwp-request -deS $@"
+
 	# if we have vim, vi is vim also shotcut v is vim.
 	if type 'vim' > /dev/null 2>&1; then
 		alias vi='vim'

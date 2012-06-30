@@ -18,10 +18,14 @@ if s:has_win
   endif
 elseif has('mac')
   "set guifont=Monaco:h10
-  set guifont=Menlo:h14
+  set gfn=Ubuntu\ Mono:h14
+  set gfw=Hiragino\ Kaku\ Gothic\ Pro:h12
 else
   set guifont=Monospace\ 8
 endif
+
+set lsp=1
+let g:molokai_original = 1
 
 " }}}
 
@@ -40,14 +44,6 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
-" Transparency if we can use.
-if(exists('&transparency'))
-  set transparency=5
-  augroup MyAutoCommands
-    autocmd FocusGained * set transparency=5
-    autocmd FocusLost * set transparency=30
-  augroup END
-endif
 " Use visualbell, stop beeping.
 set visualbell t_vb=
 

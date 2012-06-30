@@ -811,6 +811,7 @@ NeoBundle 'django.vim'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
+NeoBundle 'scrooloose/syntastic'
 if !has('mac') || has('mac') && has('gui')
     NeoBundle 'pyflakes.vim'
 endif
@@ -904,6 +905,13 @@ let g:Powerline_symbols = 'fancy'
 
 " zen-coding
 let g:user_zen_settings = {'indentation' : '  '}
+
+" syntastic
+let g:syntastic_mode_map = { 'mode': 'active',
+  \ 'active_filetypes': [],
+  \ 'passive_filetypes': ['html', 'javascript'] }
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_javascript_checker = 'gjslint'
 
 "}}}
 
