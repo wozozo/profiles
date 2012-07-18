@@ -325,9 +325,14 @@ fi
 # Load Perl local::lib.
 init_locallib
 
+# Initialize virtualenvwrapper
+init_virtualenv
+
 # Cleanup PATH, MANPATH.
 clean_paths
 
 # }}}
+
+export WORKON_HOME=$HOME/.virtualenvs
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
