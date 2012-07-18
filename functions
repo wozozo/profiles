@@ -195,8 +195,13 @@ init_rubies() {
 }
 
 init_locallib() {
+<<<<<<< HEAD
 	if [ -s "$HOME/perl5/lib/perl5/local/lib.pm" ]; then
 		eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)
+=======
+	if [ -s "$HOME/.perl5/lib/perl5/local/lib.pm" ]; then
+		eval $(perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)
+>>>>>>> cd2ea6e4c4af0384f02d4acef9ad6c5fd266cf16
 		return 0
 	fi
 	return 1
