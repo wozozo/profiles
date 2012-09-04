@@ -813,12 +813,13 @@ NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'kana/vim-smartinput'
 if !has('mac') || has('mac') && has('gui')
     NeoBundle 'pyflakes.vim'
 endif
 
 " ctrlp
-set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/.sass-cache/*,.DS_Store,*.pyc,*~
+set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,.DS_Store,*.pyc,*~
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$',
 \ }
