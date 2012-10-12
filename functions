@@ -216,9 +216,8 @@ virtualenv_info() {
 }
 
 init_virtualenv() {
-	if [ -f "$HOME/local/bin/virtualenvwrapper_lazy.sh" ]; then
-		source "$HOME/local/bin/virtualenvwrapper_lazy.sh"
-		# source "$HOME/local/bin/virtualenvwrapper.sh"
+	if [ -f "$HOME/local/bin/virtualenvwrapper.sh" ]; then
+		source "$HOME/local/bin/virtualenvwrapper.sh"
 		return 0
 	fi
 	return 1
