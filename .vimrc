@@ -813,9 +813,10 @@ NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'scrooloose/syntastic'
-if !has('mac') || has('mac') && has('gui')
-    NeoBundle 'pyflakes.vim'
-endif
+NeoBundle 'mitechie/pyflakes-pathogen'
+" if !has('mac') || has('mac') && has('gui')
+"     NeoBundle 'pyflakes.vim'
+" endif
 
 " ctrlp
 set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/.sass-cache/*,.DS_Store,*.pyc,*~

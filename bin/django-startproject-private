@@ -1,0 +1,24 @@
+#!/bin/sh
+set -e
+
+usage() {
+    echo "Usage: `basename $0` [template repo] [project name]"
+    echo "      e.g.: `basename $0` https://github.com/user/repo.git prjectname"
+    exit 1
+}
+
+
+REPO=$1
+PROJ=$2
+
+if [ -z "$REPO" ] || [ -z "$PROJ" ]; then
+    usage
+fi
+
+#TMPPRJ=/tmp/`cat /dev/urandom | tr -dc '[:alnum:]' | head -c 10`
+TMPPRJ=/tmp/`echo \$RANDOM |md5sum |head -c 10`
+git clone $REPO $TMPPRJ
+
+django-admin.py startproject --template=$TMPPRJ $PROJ
+
+rm -rf $TMPPRJ
