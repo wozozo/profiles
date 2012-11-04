@@ -58,6 +58,9 @@ PROMPT='
 # Show current directory on right prompt.
 # RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
 
+# Report slow system execution times
+export REPORTTIME=3
+
 # Change directory if the command doesn't exist.
 setopt auto_cd
 
@@ -277,31 +280,6 @@ bindkey -M viins '\C-t' transpose-words
 
 # }}}
 
-## Zsh Terminal Title Changes {{{
-
-# case "${TERM}" in
-# screen*|ansi*)
-# 	preexec_term_title() {
-# 		print -n "\ek$1\e\\"
-# 	}
-# 	preexec_functions+=preexec_term_title
-# 	precmd_term_title() {
-# 		print -n "\ek$(whoami)@$(hostname -s):$(basename "${PWD}")\e\\"
-# 	}
-# 	precmd_functions+=precmd_term_title
-# 	;;
-# xterm*)
-# 	preexec_term_title() {
-# 		print -n "\e]0;$1\a"
-# 	}
-# 	preexec_functions+=preexec_term_title
-# 	precmd_term_title() {
-# 		print -n "\e]0;$(basename "${PWD}")\a"
-# 	}
-# 	precmd_functions+=precmd_term_title
-# 	;;
-# esac
-
 # clear Terminal.app title
 precmd() {
     echo -ne "\033]0;\007"
@@ -325,9 +303,14 @@ fi
 # Load Perl local::lib.
 init_locallib
 
+# Initialize virtualenvwrapper
+init_virtualenv
+
 # Cleanup PATH, MANPATH.
 clean_paths
 
 # }}}
+
+export WORKON_HOME=$HOME/.virtualenvs
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:

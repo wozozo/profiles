@@ -44,6 +44,14 @@ set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
+" Transparency if we can use.
+if(exists('&transparency'))
+  set transparency=3
+  augroup MyAutoCommands
+    autocmd FocusGained * set transparency=3
+    autocmd FocusLost * set transparency=8
+  augroup END
+endif
 " Use visualbell, stop beeping.
 set visualbell t_vb=
 
