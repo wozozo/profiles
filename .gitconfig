@@ -30,6 +30,7 @@
 	grep = auto
 [core]
 	excludesfile = $HOME/.gitignore
+	pager = less
 [i18n]
 	commitEncoding = UTF-8
 	logOutputEncoding = UTF-8
