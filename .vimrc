@@ -779,7 +779,11 @@ autocmd MyAutoCommands FileType gitcommit DiffGitCached
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neocomplcache-snippets-complete'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', { 'build' : {
+  \  'mac': 'make -f make_mac.mak',
+  \  'unix': 'make -f make_unix.mak'
+  \  },
+  \ }
 NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
@@ -815,6 +819,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mitechie/pyflakes-pathogen'
+" NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
 " endif
