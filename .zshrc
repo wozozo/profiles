@@ -49,11 +49,12 @@ colors
 # Expand parameters in the prompt.
 setopt prompt_subst
 
-export VIRTUAL_ENV_DISABLE_PROMPT=1
+# export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Prompt strings.
 PROMPT='
-%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}$(virtualenv_info)'
+%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
+# %{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}$(virtualenv_info)'
 
 # Show current directory on right prompt.
 # RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
@@ -304,13 +305,15 @@ fi
 init_locallib
 
 # Initialize virtualenvwrapper
-init_virtualenv
+# init_virtualenv
 
 # Cleanup PATH, MANPATH.
 clean_paths
 
 # }}}
 
-export WORKON_HOME=$HOME/.virtualenvs
+# export WORKON_HOME=$HOME/.virtualenvs
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
