@@ -778,7 +778,7 @@ autocmd MyAutoCommands FileType gitcommit DiffGitCached
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neocomplcache-snippets-complete'
 NeoBundle 'Shougo/vimproc', { 'build' : {
   \  'mac': 'make -f make_mac.mak',
   \  'unix': 'make -f make_unix.mak'
@@ -814,7 +814,7 @@ NeoBundle 'grep.vim'
 NeoBundle 'nginx.vim'
 NeoBundle 'django.vim'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
-NeoBundle 'honza/snipmate-snippets'
+" NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
 " NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'

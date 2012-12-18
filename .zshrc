@@ -313,7 +313,13 @@ clean_paths
 # }}}
 
 # export WORKON_HOME=$HOME/.virtualenvs
+
+# pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
+
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:

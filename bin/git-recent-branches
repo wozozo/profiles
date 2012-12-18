@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# http://subtech.g.hatena.ne.jp/motemen/20121128/1354098329
+
+OPTS_SPEC="\
+git recent-branches [options]
+--
+days=     Days to back (defaults 7)
+date=     Date format {relative,local,iso,rfc,short,raw,default}
+no-merged Show only branches not merged into HEAD
+"
+
+eval "$(echo "$OPTS_SPEC" | git rev-parse --parseopt -- "$@" || echo exit $?)"
+
+OPTIONS=''
+
+while [ -n "$1" ]; do
+    case $1 in
+        "--days")
+            shift
+            DAYS="$1"
+        ;;
+        "--date")
+            shift
+            DATE="$1"
+        ;;
+        "--no-merged")
+            OPTIONS="$OPTIONS --not HEAD"
+    esac
+
+    shift
+done
+
+git log --date=${DATE-default} --remotes --simplify-by-decoration --no-merges \
+    --pretty='format:%C(blue)%ad%Creset %C(yellow)%H%Creset - %s %C(bold)[%an]%Creset' \
+    --since="{${DAYS-7} days ago}" \
+    $OPTIONS \
+    | git name-rev --stdin --name-only
+echo

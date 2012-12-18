@@ -44,14 +44,14 @@
 [tig]
   #line-graphics = ascii
   tab-size = 4
-[tig "bind"]
-  # Disable default G mapping to git gc.
-  generic = G none
-  # Keybindings like vim.
-  generic = g move-first-line
-  generic = G move-last-line
-  generic = ^b move-page-up
-  generic = ^f move-page-down
+; [tig "bind"]
+;   # Disable default G mapping to git gc.
+;   generic = G none
+;   # Keybindings like vim.
+;   generic = g move-first-line
+;   generic = G move-last-line
+;   generic = ^b move-page-up
+;   generic = ^f move-page-down
 [tig "color"]
   cursor = default black
   date = white default
