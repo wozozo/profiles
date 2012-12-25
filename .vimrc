@@ -778,7 +778,7 @@ autocmd MyAutoCommands FileType gitcommit DiffGitCached
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neocomplcache-snippets-complete'
+NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/vimproc', { 'build' : {
   \  'mac': 'make -f make_mac.mak',
   \  'unix': 'make -f make_unix.mak'
