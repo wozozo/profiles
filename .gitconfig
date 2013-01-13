@@ -37,7 +37,7 @@
 [github]
 	user = wozozo
 [mergetool]
-  keepBackup = true
+	keepBackup = true
 
 # tig Configurations
 # See man tigrc(5).

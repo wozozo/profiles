@@ -1,5 +1,11 @@
+# Search
 --color
 --type-set=coffee=.coffee
 --type-set=html=.html,.twig
 --type-set=scss=.scss
 --type-set=rst=.rst
+
+# Don't search
+--ignore-dir=log
+--ignore-dir=tags
+--ignore-dir=tmp
