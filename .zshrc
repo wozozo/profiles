@@ -316,7 +316,7 @@ clean_paths
 
 # pyenv
 export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init -)"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
