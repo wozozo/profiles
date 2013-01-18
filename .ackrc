@@ -9,3 +9,5 @@
 --ignore-dir=log
 --ignore-dir=tags
 --ignore-dir=tmp
+--type-set=junk=.pyc
+--nojunk
