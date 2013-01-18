@@ -816,7 +816,7 @@ NeoBundle 'django.vim'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 " NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
-" NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mitechie/pyflakes-pathogen'
 " NeoBundle 'davidhalter/jedi-vim'
@@ -917,7 +917,7 @@ let g:user_zen_settings = {'indentation' : '  '}
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'active_filetypes': [],
-  \ 'passive_filetypes': ['html', 'javascript'] }
+  \ 'passive_filetypes': ['html', 'javascript', 'python'] }
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'gjslint'
 
