@@ -788,6 +788,7 @@ NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
+NeoBundle 'thinca/vim-poslist'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
@@ -844,7 +845,7 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Disable neocomplcache on special cases.
 let g:neocomplcache_lock_buffer_name_pattern = '\[Command Line\]'
 
-let g:neocomplcache_snippets_dir = '~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets'
+let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 " let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.
 imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 smap <C-k>     <Plug>(neocomplcache_snippets_expand)
@@ -875,6 +876,9 @@ nnoremap [Unite] <Nop>
 
 let s:file_rec_source = executable('ls') && unite#util#has_vimproc() ? "file_rec/async" : "file_rec"
 
+nnoremap <silent> /  :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+nnoremap <silent> * :<C-u>UniteWithCursorWord line -buffer-name=search<CR>
+nnoremap <silent> n :<C-u>UniteResume search -no-start-insert<CR>
 execute printf('nnoremap <silent> [Unite]f :<C-u>Unite -buffer-name=files -start-insert buffer_tab file_mru file %s<CR>', s:file_rec_source)
 nnoremap <silent> [Unite]k :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
 nnoremap <silent> [Unite]l :<C-u>Unite -start-insert -buffer-name=files file_mru<CR>
