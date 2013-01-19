@@ -325,4 +325,12 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+. $HOME/.profiles/zsh/z/z.sh
+function precmd () {
+  _z --add "$(pwd -P)"
+}
+
+# zaw
+source $HOME/.profiles/zsh/zaw/zaw.zsh
+
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
