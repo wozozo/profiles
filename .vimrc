@@ -807,6 +807,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sgur/ctrlp-extensions.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'othree/html5.vim'
+NeoBundle 'othree/eregex.vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Javascript-Indentation'
 NeoBundle 'matchit.zip'
@@ -876,9 +877,9 @@ nnoremap [Unite] <Nop>
 
 let s:file_rec_source = executable('ls') && unite#util#has_vimproc() ? "file_rec/async" : "file_rec"
 
-nnoremap <silent> /  :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
-nnoremap <silent> * :<C-u>UniteWithCursorWord line -buffer-name=search<CR>
-nnoremap <silent> n :<C-u>UniteResume search -no-start-insert<CR>
+" nnoremap <silent> /  :<C-u>Unite -buffer-name=search line -start-insert -no-quit<CR>
+" nnoremap <silent> * :<C-u>UniteWithCursorWord line -buffer-name=search<CR>
+" nnoremap <silent> n :<C-u>UniteResume search -no-start-insert<CR>
 execute printf('nnoremap <silent> [Unite]f :<C-u>Unite -buffer-name=files -start-insert buffer_tab file_mru file %s<CR>', s:file_rec_source)
 nnoremap <silent> [Unite]k :<C-u>UniteWithBufferDir -buffer-name=files -start-insert file<CR>
 nnoremap <silent> [Unite]l :<C-u>Unite -start-insert -buffer-name=files file_mru<CR>
@@ -911,6 +912,12 @@ nnoremap <silent> <expr> [Unite]g printf(':<C-u>Unite grep:%s:-R:%s -no-quit<CR>
 let g:unite_source_outline_indent_width = 4
 nnoremap <silent> [unite]o :<C-u>Unite -start-insert outline<CR>
 nnoremap <silent> <C-o> :<C-u>Unite -start-insert outline<CR>
+
+" eregex.vim
+" nnoremap / :M/
+" nnoremap ? :M?
+" nnoremap ,/ /
+" nnoremap ,? ?
 
 " vim-powerline
 let g:Powerline_symbols = 'fancy'
