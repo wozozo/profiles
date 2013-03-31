@@ -826,8 +826,28 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 "     NeoBundle 'pyflakes.vim'
 " endif
 
+" QuickRun
+
+let g:quickrun_config = {
+    \ "_" : {
+    \  "hook/time/enable" : 1,
+    \  "outputter/buffer/split" : ":botright",
+    \  "outputter/buffer/close_on_empty" : 1,
+    \ "outputter/error/error" : "quickfix",
+    \ "outputter/error/success" : "buffer",
+    \  "runner" : "vimproc",
+    \  "runner/vimproc/updatetime" : 60,
+    \ },
+    \ "cpp/g++" : {
+    \  "cmdopt" : "-std=c++0x",
+    \ },
+\}
+
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+
+
 " ctrlp
-set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,.DS_Store,*.pyc,*~
+set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,*/build/*,.DS_Store,*.pyc,*~
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$',
 \ }
