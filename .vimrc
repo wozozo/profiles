@@ -807,7 +807,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sgur/ctrlp-extensions.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'othree/html5.vim'
-NeoBundle 'othree/eregex.vim'
+" NeoBundle 'othree/eregex.vim'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Javascript-Indentation'
 NeoBundle 'matchit.zip'
@@ -821,6 +821,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mitechie/pyflakes-pathogen'
+NeoBundle 'airblade/vim-gitgutter'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
@@ -847,7 +848,7 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 
 
 " ctrlp
-set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,*/build/*,.DS_Store,*.pyc,*~
+set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,*/build/*,.DS_Store,*.pyc,*.png,*.jpg,*.gif,*~
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$',
 \ }
