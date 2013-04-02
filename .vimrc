@@ -822,6 +822,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'terryma/vim-expand-region'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
