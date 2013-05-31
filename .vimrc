@@ -835,8 +835,8 @@ let g:quickrun_config = {
     \  "hook/time/enable" : 1,
     \  "outputter/buffer/split" : ":botright",
     \  "outputter/buffer/close_on_empty" : 1,
-    \ "outputter/error/error" : "quickfix",
-    \ "outputter/error/success" : "buffer",
+    \  "outputter/error/error" : "quickfix",
+    \  "outputter/error/success" : "buffer",
     \  "runner" : "vimproc",
     \  "runner/vimproc/updatetime" : 60,
     \ },
@@ -950,7 +950,7 @@ let g:user_zen_settings = {'indentation' : '  '}
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'active_filetypes': [],
-  \ 'passive_filetypes': ['html', 'javascript', 'python'] }
+  \ 'passive_filetypes': ['html', 'javascript', 'python', 'scss', 'less'] }
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'gjslint'
 

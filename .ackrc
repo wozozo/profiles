@@ -3,6 +3,7 @@
 --type-set=coffee=.coffee
 --type-set=html=.html,.twig
 --type-set=scss=.scss
+--type-set=less=.less
 --type-set=rst=.rst
 
 # Don't search
