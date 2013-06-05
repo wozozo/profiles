@@ -335,5 +335,7 @@ function precmd () {
 
 # zaw
 source $HOME/.profiles/zsh/zaw/zaw.zsh
+source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
+bindkey '^x^b' zaw-git-recent-branches
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
