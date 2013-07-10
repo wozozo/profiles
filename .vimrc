@@ -816,13 +816,13 @@ NeoBundle 'grep.vim'
 NeoBundle 'nginx.vim'
 NeoBundle 'django.vim'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
-" NeoBundle 'honza/snipmate-snippets'
 NeoBundle 'gregsexton/gitv'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
 NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'moznion/unite-git-conflict.vim'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
@@ -870,8 +870,8 @@ let g:neocomplcache_lock_buffer_name_pattern = '\[Command Line\]'
 
 let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 " let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
 " unite.vim
 let g:unite_source_file_mru_limit = 200
