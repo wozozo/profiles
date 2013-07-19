@@ -168,6 +168,9 @@ augroup END
 " Open QuickFix after vimgrep
 "autocmd MyAutoCommands QuickFixCmdPost grep,grepadd,vimgrep,vimgrepadd copen
 
+" Auto insert close tag
+autocmd FileType html inoremap <silent> <buffer> </ </<C-x><C-o>
+
 " Restore cursor positon
 "{{{
 function! s:RestoreCursorPosition()
