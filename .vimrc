@@ -811,7 +811,7 @@ NeoBundle 'sgur/ctrlp-extensions.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'othree/html5.vim'
 " NeoBundle 'othree/eregex.vim'
-NeoBundle 'Lokaltog/vim-powerline'
+NeoBundle 'bling/vim-airline'
 NeoBundle 'Javascript-Indentation'
 NeoBundle 'matchit.zip'
 NeoBundle 'SQLUtilities'
@@ -944,8 +944,19 @@ nnoremap <silent> <C-o> :<C-u>Unite -start-insert outline<CR>
 " nnoremap ,/ /
 " nnoremap ,? ?
 
-" vim-powerline
-let g:Powerline_symbols = 'fancy'
+" vim-airline
+let g:airline_theme = 'powerlineish'
+let g:airline_powerline_fonts = 1
+
+let g:airline_left_sep = '⮀'
+let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+let g:airline_branch_prefix = '⭠'
+let g:airline_readonly_symbol = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+let g:airline_paste_symbol = '∥'
+let g:airline_whitespace_symbol = 'Ξ'
 
 " zen-coding
 let g:user_zen_settings = {'indentation' : '  '}
