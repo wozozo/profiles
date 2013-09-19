@@ -826,6 +826,7 @@ NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'moznion/unite-git-conflict.vim'
+NeoBundle 'osyo-manga/vim-anzu'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
@@ -967,6 +968,16 @@ let g:syntastic_mode_map = { 'mode': 'active',
   \ 'passive_filetypes': ['html', 'javascript', 'python', 'scss', 'less'] }
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'gjslint'
+
+" vim-anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+
+set statusline=%{anzu#search_status()}
 
 "}}}
 
