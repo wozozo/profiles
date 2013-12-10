@@ -827,6 +827,8 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'moznion/unite-git-conflict.vim'
 NeoBundle 'osyo-manga/vim-anzu'
+NeoBundle 'croaky/vim-colors-github'
+NeoBundle 'osyo-manga/vim-over'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
@@ -975,7 +977,7 @@ nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
 
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+" nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 set statusline=%{anzu#search_status()}
 
