@@ -61,3 +61,6 @@
   date = white default
   title-focus = white black
   title-blur = black white
+[ghq]
+  root = ~/repos
+  root = ~/.go/src
