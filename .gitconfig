@@ -63,4 +63,5 @@
   title-blur = black white
 [ghq]
   root = ~/repos
+  root = ~/Development
   root = ~/.go/src
