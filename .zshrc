@@ -329,7 +329,11 @@ if [ -x "`which go`" ]; then
 fi
 
 # nvm
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+if [ "`uname`" = "Darwin" ]; then
+  source $(brew --prefix nvm)/nvm.sh
+else
+  [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -343,5 +347,7 @@ function precmd () {
 source $HOME/.profiles/zsh/zaw/zaw.zsh
 source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
 bindkey '^x^b' zaw-git-recent-branches
+
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
