@@ -231,4 +231,9 @@ function whois() {
 	/usr/bin/whois $1 | iconv -f ISO-2022-JP
 }
 
+
+function agvim () {
+	vim $(ack --nocolor $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+}
+
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:ft=sh:

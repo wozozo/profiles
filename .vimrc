@@ -830,6 +830,7 @@ NeoBundle 'moznion/unite-git-conflict.vim'
 NeoBundle 'osyo-manga/vim-anzu'
 NeoBundle 'croaky/vim-colors-github'
 NeoBundle 'osyo-manga/vim-over'
+NeoBundle 'tell-k/vim-autopep8'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
