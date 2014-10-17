@@ -33,6 +33,8 @@ init_lang() {
 init_paths() {
 	if [ -x /usr/libexec/path_helper ]; then
 		# path_helper needs MANPATH env to assign values.
+		PATH=''
+		source /etc/profile
 		export MANPATH=$MANPATH
 		eval `/usr/libexec/path_helper -s`
 	fi
