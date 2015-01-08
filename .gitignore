@@ -3,6 +3,7 @@
 local
 tags
 tags-*
+.tmux/plugins
 /.vim/bundle/**/*
 !/.vim/bundle/neobundle.vim
 /.vim/.netrwhist
