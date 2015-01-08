@@ -1,5 +1,6 @@
 profiles=~/.profiles
 source "${profiles}/functions"
+source "${profiles}/prompt"
 
 ## Pre Configurations {{{
 
@@ -52,8 +53,8 @@ setopt prompt_subst
 # export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # Prompt strings.
-PROMPT='
-%{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
+# PROMPT='
+# %{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
 # %{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}$(virtualenv_info)'
 
 # Show current directory on right prompt.
@@ -208,7 +209,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' '+m:{A-Z}={a-z}'
 # Hostname completion
 local knownhosts
 if [ -f $HOME/.ssh/known_hosts ]; then
-	knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} ) 
+	knownhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 	zstyle ':completion:*:(ssh|scp|sftp):*' hosts $knownhosts
 fi
 
