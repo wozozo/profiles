@@ -229,11 +229,6 @@ init_virtualenv() {
 	return 1
 }
 
-function whois() {
-	/usr/bin/whois $1 | iconv -f ISO-2022-JP
-}
-
-
 function agvim () {
 	vim $(ack --nocolor $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
