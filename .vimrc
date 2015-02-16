@@ -677,34 +677,6 @@ augroup MyAutoCommands
 augroup END
 "}}}
 
-" Keep no end of line
-" See http://vim.wikia.com/wiki/Preserve_missing_end-of-line_at_end_of_text_files
-"{{{
-function! s:SetBinaryForNoeol()
-  let g:save_binary_for_noeol = &binary
-  if ! &endofline && ! &binary
-    setlocal binary
-    if &fileformat == "dos"
-      silent 1,$-1s/$/\="\\".nr2char(13)
-    endif
-  endif
-endfunction
-
-function! s:RestoreBinaryForNoeol()
-  if ! &endofline && ! g:save_binary_for_noeol
-    if &fileformat == "dos"
-      silent 1,$-1s/\r$/
-    endif
-    setlocal nobinary
-  endif
-endfunction
-
-augroup MyAutoCommands
-  autocmd BufWritePre  * call <SID>SetBinaryForNoeol()
-  autocmd BufWritePost * call <SID>RestoreBinaryForNoeol()
-augroup END
-"}}}
-
 " Remove tailing spaces.
 "{{{
 function! s:StripTrailingWhitespaces()
