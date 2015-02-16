@@ -230,7 +230,7 @@ init_virtualenv() {
 }
 
 function agvim () {
-	vim $(ack --nocolor $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
+	vim $(ag $@ | peco --query "$LBUFFER" | awk -F : '{print "-c " $2 " " $1}')
 }
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:ft=sh:
