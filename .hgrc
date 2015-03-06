@@ -28,19 +28,9 @@ transplant =
 cmd.chdiff =
 opts.chdiff = --wait
 
-# [merge-tools]
-# changes.executable = chdiff
-# changes.args = --wait $local $other
-
 [trusted]
 users = wozozo
 groups = wozozo
 
 [diff]
 # git = True
-
-[alias]
-dlog = log --style=$HOME/.profiles/zsh/mercurial/templates/map-cmdline.dlog
-nlog = log --style=$HOME/.profiles/zsh/mercurial/templates/map-cmdline.nlog
-sglog = glog --style=$HOME/.profiles/zsh/mercurial/templates/map-cmdline.sglog
-slog = log --style=$HOME/.profiles/zsh/mercurial/templates/map-cmdline.slog

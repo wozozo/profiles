@@ -239,6 +239,7 @@ augroup MyAutoCommands
   autocmd BufNewFile,BufRead *.scss setlocal filetype=scss
   autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
   autocmd BufNewFile,BufRead *.less setlocal filetype=less
+  autocmd BufNewFile,BufRead *.swift setlocal filetype=swift
 
   " Support grepedit comamnd. See ~/.profiles/bin/grepedit
   autocmd BufRead grepedit.tmp.* setlocal filetype=grepedit
@@ -801,6 +802,7 @@ NeoBundle 'croaky/vim-colors-github'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'tell-k/vim-autopep8'
 NeoBundle 'cohama/agit.vim'
+NeoBundle 'Keithbsmiley/swift.vim'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'

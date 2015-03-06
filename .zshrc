@@ -1,6 +1,5 @@
 profiles=~/.profiles
 source "${profiles}/functions"
-source "${profiles}/prompt"
 
 ## Pre Configurations {{{
 
@@ -22,13 +21,6 @@ init_lang
 
 init_aliases
 
-# Aliases using pipes, works only on Zsh.
-alias -g V="| vi -v -"
-alias -g G="| grep"
-alias -g T="| tail"
-alias -g H="| head"
-alias -g L="| less -r"
-
 ## }}}
 
 ## Zsh Basic Configurations {{{
@@ -36,9 +28,6 @@ alias -g L="| less -r"
 # Initialize hook functions array.
 typeset -ga preexec_functions
 typeset -ga precmd_functions
-
-# Use vi key bindings.
-#bindkey -v
 
 # Use emacs key bindings.
 bindkey -e
@@ -50,15 +39,8 @@ colors
 # Expand parameters in the prompt.
 setopt prompt_subst
 
-# export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-# Prompt strings.
-# PROMPT='
-# %{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}'
-# %{$fg_bold[blue]%}%n%{$reset_color%} at %{$fg[red]%}%m%{$reset_color%} in %{$fg_bold[cyan]%}${PWD/#$HOME/~}%{$reset_color%}$(virtualenv_info)'
-
 # Show current directory on right prompt.
-# RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
+RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
 
 # Report slow system execution times
 export REPORTTIME=3
@@ -90,9 +72,6 @@ setopt no_flow_control
 # Don't send SIGHUP to background jobs when shell exits.
 setopt no_hup
 
-# Disable C-d to exit shell.
-#setopt ignore_eof
-
 # Show long list for jobs command.
 setopt long_list_jobs
 
@@ -101,9 +80,6 @@ setopt magic_equal_subst
 
 # Append / if complete directory.
 setopt mark_dirs
-
-# Don't show the list for completions.
-#setopt no_auto_menu
 
 # Don't show completions when using *.
 setopt glob_complete
@@ -117,17 +93,8 @@ setopt numeric_glob_sort
 # Enable file names using 8 bits, important to rendering Japanese file names.
 setopt print_eightbit
 
-# Show exit code if exits non 0.
-#setopt print_exit_value
-
 # Don't push multiple copies of the same directory onto the directory stack.
 setopt pushd_ignore_dups
-
-# Use single-line command line editing instead of multi-line.
-#setopt single_line_zle
-
-# Print commands and their arguments as they are executed.
-#setopt xtrace
 
 # Show CR if the prompt doesn't end with CR.
 unsetopt promptcr
@@ -140,10 +107,6 @@ setopt auto_pushd
 
 # Don't report the status of background and suspended jobs.
 setopt no_check_jobs
-
-# Enable predict completion
-#autoload -Uz predict-on
-#predict-on
 
 # Remove directory word by C-w.
 autoload -Uz select-word-style
@@ -164,8 +127,7 @@ if autoload +X vcs_info 2> /dev/null; then
 		[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 	}
 	precmd_functions+=precmd_vcs_info
-	PROMPT="${PROMPT}%1(V. %F{green}%1v%f.)
-"
+	PROMPT="${PROMPT}%1(V.%F{green}%1v%f .)"
 fi
 
 # }}}
@@ -298,36 +260,13 @@ init_additionl_configration "*.zsh"
 
 ## Post Configurations {{{
 
-if init_rubies; then
-	RPROMPT="${RPROMPT} %{$fg[red]%}\${RUBIES_RUBY_NAME}%{$reset_color%}"
-fi
-
 # Load Perl local::lib.
 init_locallib
-
-# Initialize virtualenvwrapper
-# init_virtualenv
 
 # Cleanup PATH, MANPATH.
 clean_paths
 
 # }}}
-
-# export WORKON_HOME=$HOME/.virtualenvs
-
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-if [ -x "`which go`" ]; then
-  export GOROOT=`go env GOROOT`
-  export GOPATH=$HOME/.go
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-fi
 
 # nvm
 if [ "`uname`" = "Darwin" ]; then
@@ -356,5 +295,11 @@ if [ "`uname`" = "Darwin" ]; then
   export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
   export DOCKER_TLS_VERIFY=1
 fi
+
+# if [ -x "`which go`" ]; then
+export GOROOT=`go env GOROOT`
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# fi
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:

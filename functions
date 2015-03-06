@@ -1,22 +1,3 @@
-get_hash_id() {
-	result=$($1|sum|cut -d' ' -f1)
-}
-
-get_color_index() {
-	# There are 7 colors and black then use them cyclic.
-	result=$(($1 % 7 + 1))
-}
-
-get_prompt_color_indexes() {
-	get_hash_id "whoami"; get_color_index $result
-	local user=$result
-	get_hash_id "hostname"; get_color_index $result
-	local host=$result
-	get_color_index $(($SHLVL + 2))
-	local shlvl=$result
-	result=($user $host $shlvl)
-}
-
 init_editor() {
 	for i in vim vi; do
 		if which "$i" 2>&1 1>/dev/null; then
@@ -79,6 +60,14 @@ init_paths() {
 	# local bin path
 	export PATH="$HOME/local/bin:$PATH"
 
+	# pyenv
+	export PATH="$HOME/.pyenv/bin:$PATH"
+	if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+	# rbenv
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 	clean_paths
 }
 
@@ -108,25 +97,8 @@ init_aliases() {
 	fi
 
 	# ls
-	alias ls-al="ls -al"
 	alias l="ls -l"
 	alias ll="ls -al"
-
-	# subversion related
-	alias svndiff="svn diff -x --ignore-all-space -x --ignore-eol-style | vi -v -"
-	alias svndiffd="svn diff -x --ignore-all-space -x --ignore-eol-style -r \"{\`date -v-1d +%Y%m%d\`}\" | vi -v -"
-	alias svnst="svn st | grep -v '^[X?]'"
-
-	# grep related
-	if type 'ack' >/dev/null 2>&1; then
-		alias gr="ack"
-	else
-		if grep --help 2>&1|grep -e '--exclude-dir' 2>&1 >/dev/null; then
-			alias gr="grep -r -E -n --color=always --exclude='*.svn*' --exclude='*.log*' --exclude='*tmp*' --exclude-dir='**/tmp' --exclude-dir='CVS' --exclude-dir='.svn' --exclude-dir='.git' . -e "
-		else
-			alias gr="grep -r -E -n --color=always --exclude='*.svn*' --exclude='*.log*' --exclude='*tmp*' . -e "
-		fi
-	fi
 
 	alias ge="grepedit"
 
@@ -148,15 +120,9 @@ init_aliases() {
 	alias t="tree -C"
 	alias p="pbcopy"
 
-	# awk
-	for i in 1 2 3 4 5 6 7 8 9; do
-		alias a$i="awk '{print \$$i}'"
-	done
-
 	# user agent
 	alias curlh="curl -s -L -D - -o /dev/null $@"
 	alias wgeth="wget -S -q -O /dev/null $@"
-	alias lwph="lwp-request -deS $@"
 
 	# if we have vim, vi is vim also shotcut v is vim.
 	if type 'vim' > /dev/null 2>&1; then
@@ -180,50 +146,9 @@ init_additionl_configration() {
 	done
 }
 
-init_rvm() {
-	if [ -s "$HOME/.rvm/scripts/rvm" ]; then
-		source "$HOME/.rvm/scripts/rvm"
-		rvm default 1>/dev/null 2>&1
-		if [ -f ".rvmrc" ]; then
-			source ".rvmrc"
-		fi
-		return 0
-	fi
-	return 1
-}
-
-init_rubies() {
-	if [ -s "$HOME/.rubies/src/rubies.sh" ]; then
-		source "$HOME/.rubies/src/rubies.sh"
-		enable_rubies_cd_hook
-		return 0
-	fi
-	return 1
-}
-
 init_locallib() {
 	if [ -s "$HOME/perl5/lib/perl5/local/lib.pm" ]; then
 		eval $(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)
-		return 0
-	fi
-	return 1
-}
-
-init_nodebrew() {
-	if [ -d $HOME/.nodebrew ]; then
-		export PATH=$HOME/.nodebrew/current/bin:$PATH
-		return 0
-	fi
-	return 1
-}
-
-virtualenv_info() {
-	[ $VIRTUAL_ENV ] && echo ' ('`basename $VIRTUAL_ENV`')'
-}
-
-init_virtualenv() {
-	if [ -f "$HOME/local/bin/virtualenvwrapper.sh" ]; then
-		source "$HOME/local/bin/virtualenvwrapper.sh"
 		return 0
 	fi
 	return 1
