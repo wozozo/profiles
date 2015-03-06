@@ -40,7 +40,7 @@ colors
 setopt prompt_subst
 
 # Show current directory on right prompt.
-RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
+# RPROMPT="%{$fg[blue]%}%~%{$reset_color%}"
 
 # Report slow system execution times
 export REPORTTIME=3
@@ -127,7 +127,8 @@ if autoload +X vcs_info 2> /dev/null; then
 		[[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
 	}
 	precmd_functions+=precmd_vcs_info
-	PROMPT="${PROMPT}%1(V.%F{green}%1v%f .)"
+	# PROMPT="${PROMPT}%1(V.%F{green}%1v%f .)"
+	PROMPT="${PROMPT}%{$fg[blue]%}%~%{$reset_color%} %1(V.%F{green}%1v%f .)"
 fi
 
 # }}}

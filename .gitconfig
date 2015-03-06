@@ -14,14 +14,6 @@
 	ranking = shortlog -s -n --no-merges
 	edit-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; gvim `f`"
 	add-unmerged = "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
-	switch = !legit switch \"$@\"
-	branches = !legit branches
-	sprout = !legit sprout \"$@\"
-	unpublish = !legit unpublish \"$@\"
-	harvest = !legit harvest \"$@\"
-	sync = !legit sync \"$@\"
-	publish = !legit publish \"$@\"
-	graft = !legit graft \"$@\"
 [color]
 	diff = auto
 	status = auto
@@ -31,10 +23,6 @@
 [core]
 	excludesfile = $HOME/.gitignore
 	pager = less
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
 [i18n]
 	commitEncoding = UTF-8
 	logOutputEncoding = UTF-8
@@ -46,16 +34,7 @@
 # tig Configurations
 # See man tigrc(5).
 [tig]
-  #line-graphics = ascii
   tab-size = 4
-; [tig "bind"]
-;   # Disable default G mapping to git gc.
-;   generic = G none
-;   # Keybindings like vim.
-;   generic = g move-first-line
-;   generic = G move-last-line
-;   generic = ^b move-page-up
-;   generic = ^f move-page-down
 [tig "color"]
   cursor = default black
   date = white default
