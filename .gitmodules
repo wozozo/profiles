@@ -2,9 +2,6 @@
 	path = .vim/bundle/neobundle.vim
 	url = git://github.com/Shougo/neobundle.vim.git
 	ignore = untracked
-[submodule "zsh/z"]
-	path = zsh/z
-	url = git://github.com/knu/z.git
 [submodule "zsh/zaw"]
 	path = zsh/zaw
 	url = git://github.com/zsh-users/zaw.git

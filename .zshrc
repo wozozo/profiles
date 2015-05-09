@@ -279,11 +279,6 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-. $HOME/.profiles/zsh/z/z.sh
-function precmd () {
-  _z --add "$(pwd -P)"
-}
-
 # zaw
 source $HOME/.profiles/zsh/zaw/zaw.zsh
 source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
@@ -304,3 +299,11 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # fi
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
+
+# The next line updates PATH for the Google Cloud SDK.
+source $HOME/google-cloud-sdk/path.zsh.inc
+
+# The next line enables bash completion for gcloud.
+source $HOME/google-cloud-sdk/completion.zsh.inc
+
+export PATH="/usr/local/p/versions/python:$PATH"
