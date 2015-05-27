@@ -829,7 +829,7 @@ nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() 
 
 
 " ctrlp
-set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/CACHE/*,*/.sass-cache/*,*/build/*,.DS_Store,*.pyc,*.png,*.jpg,*.gif,*~
+set wildignore+=*/.hg/*,*/.svn/*,*/cache/*,*/node_modules/*,*/CACHE/*,*/.sass-cache/*,*/build/*,.DS_Store,*.pyc,*.png,*.jpg,*.gif,*~
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\.git$',
 \ }
@@ -848,7 +848,8 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Disable neocomplcache on special cases.
 let g:neocomplcache_lock_buffer_name_pattern = '\[Command Line\]'
 
-let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+" let g:neocomplcache_snippets_dir = '~/.vim/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 " let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
