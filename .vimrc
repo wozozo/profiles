@@ -782,6 +782,7 @@ NeoBundle 'groenewege/vim-less'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sgur/ctrlp-extensions.vim'
+NeoBundle 'nixprime/cpsm'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'bling/vim-airline'
@@ -839,6 +840,8 @@ let g:ctrlp_max_height = &lines
 " 0 - don窶冲 manage working directory
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_extensions = ['cmdline', 'menu']
+
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
