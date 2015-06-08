@@ -305,5 +305,3 @@ source $HOME/google-cloud-sdk/path.zsh.inc
 
 # The next line enables bash completion for gcloud.
 source $HOME/google-cloud-sdk/completion.zsh.inc
-
-export PATH="/usr/local/p/versions/python:$PATH"
