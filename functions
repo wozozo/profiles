@@ -55,14 +55,13 @@ init_paths() {
 	done
 
 	# profile bin path
+	export PATH="/usr/local/go/bin:$PATH"
+
+	# profile bin path
 	export PATH="$profiles/bin:$PATH"
 
 	# local bin path
 	export PATH="$HOME/local/bin:$PATH"
-
-	# pyenv
-	export PATH="$HOME/.pyenv/bin:$PATH"
-	if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 	# rbenv
 	export PATH="$HOME/.rbenv/bin:$PATH"

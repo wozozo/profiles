@@ -305,3 +305,6 @@ source $HOME/google-cloud-sdk/path.zsh.inc
 
 # The next line enables bash completion for gcloud.
 source $HOME/google-cloud-sdk/completion.zsh.inc
+
+eval "$(direnv hook zsh)"
+[[ -s ~/.pythonz/etc/bashrc ]] && source ~/.pythonz/etc/bashrc
