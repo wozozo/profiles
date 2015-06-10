@@ -2,8 +2,9 @@
 	name = Yoichi Fujimoto
 	email = wozozo@gmail.com
 [alias]
-	ci = commit
+	ci = commit -v
 	co = checkout
+	p = pull
 	up = pull --rebase --prune
 	st = status
 	br = branch
