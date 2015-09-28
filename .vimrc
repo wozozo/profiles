@@ -601,7 +601,7 @@ function! s:GrepPrg() "{{{
 endfunction "}}}
 
 command! -nargs=+ Grep call <SID>Grep(<SID>GrepPrg(), <f-args>)
-command! -nargs=+ Ack call <SID>Grep('ack', <f-args>)
+command! -nargs=+ Ack call <SID>Grep('ag', <f-args>)
 "}}}
 
 " Change file name editing

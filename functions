@@ -120,6 +120,7 @@ init_aliases() {
 	alias rand="ruby -ropenssl -e 'print OpenSSL::Digest::SHA1.hexdigest(rand().to_s)'"
 	alias t="tree -C"
 	alias p="pbcopy"
+	alias vs="vagrant ssh"
 
 	# user agent
 	alias curlh="curl -s -L -D - -o /dev/null $@"

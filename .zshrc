@@ -284,14 +284,6 @@ source $HOME/.profiles/zsh/zaw/zaw.zsh
 source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
 bindkey '^x^b' zaw-git-recent-branches
 
-# Docker
-if [ "`uname`" = "Darwin" ]; then
-  export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
-  export DOCKER_HOST=tcp://192.168.59.103:2376
-  export DOCKER_CERT_PATH=$HOME/.boot2docker/certs/boot2docker-vm
-  export DOCKER_TLS_VERIFY=1
-fi
-
 # if [ -x "`which go`" ]; then
 export GOROOT=`go env GOROOT`
 export GOPATH=$HOME/.go

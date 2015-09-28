@@ -3,8 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width,initial-scale=1.0" name="viewport">
-  <script type="text/javascript" src="//www.google.com/jsapi"></script>
-  <script type="text/javascript">google.load("jquery", "2");</script>
   <title></title>
   <style>
     body {
