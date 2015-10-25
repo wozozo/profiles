@@ -261,9 +261,6 @@ init_additionl_configration "*.zsh"
 
 ## Post Configurations {{{
 
-# Load Perl local::lib.
-init_locallib
-
 # Cleanup PATH, MANPATH.
 clean_paths
 
