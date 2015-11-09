@@ -121,6 +121,7 @@ init_aliases() {
 	alias t="tree -C"
 	alias p="pbcopy"
 	alias vs="vagrant ssh"
+	alias vu="vagrant up"
 
 	# user agent
 	alias curlh="curl -s -L -D - -o /dev/null $@"
