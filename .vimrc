@@ -841,7 +841,7 @@ let g:ctrlp_max_height = &lines
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_extensions = ['cmdline', 'menu']
 
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
