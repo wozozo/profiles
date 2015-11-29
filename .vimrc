@@ -136,6 +136,7 @@ set completeopt=menuone
 " I don't want to use backup files.
 set nobackup
 set noswapfile
+set noundofile
 
 " Hide buffer when it is abandoned.
 set hidden
