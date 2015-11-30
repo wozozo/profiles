@@ -3,3 +3,5 @@
 !.vim/bundle/neobundle.vim
 *.un~
 .vagrant
+.direnv
+.envrc

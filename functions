@@ -62,6 +62,7 @@ init_paths() {
 
 	# local bin path
 	export PATH="$HOME/local/bin:$PATH"
+	export PATH="$HOME/.local/bin:$PATH"
 
 	# rbenv
 	export PATH="$HOME/.rbenv/bin:$PATH"
