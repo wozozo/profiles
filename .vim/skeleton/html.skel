@@ -3,10 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width,initial-scale=1.0" name="viewport">
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
   <title></title>
   <style>
     body {
-      font-family: Georgia, 'Lucida Grande', Arial, sans-serif;
+      color: #2a2a68;
+      background-color: #fcfcfc;
+      font-family: Lato, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      word-wrap: break-word;
+    }
+    .content p {
+      margin: 0 0 1.6em;
+      line-height: 1.7;
     }
   </style>
 </head>
