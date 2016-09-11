@@ -267,11 +267,11 @@ clean_paths
 # }}}
 
 # nvm
-if [ "`uname`" = "Darwin" ]; then
-  source $(brew --prefix nvm)/nvm.sh
-else
-  [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-fi
+# if [ "`uname`" = "Darwin" ]; then
+#   source $(brew --prefix nvm)/nvm.sh
+# else
+#   [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+# fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -288,12 +288,6 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # fi
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
-
-# The next line updates PATH for the Google Cloud SDK.
-source $HOME/google-cloud-sdk/path.zsh.inc
-
-# The next line enables bash completion for gcloud.
-source $HOME/google-cloud-sdk/completion.zsh.inc
 
 eval "$(direnv hook zsh)"
 [[ -s ~/.pythonz/etc/bashrc ]] && source ~/.pythonz/etc/bashrc
