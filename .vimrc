@@ -787,6 +787,7 @@ NeoBundle 'nixprime/cpsm'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'matchit.zip'
 NeoBundle 'SQLUtilities'
 NeoBundle 'grep.vim'
@@ -805,6 +806,7 @@ NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'tell-k/vim-autopep8'
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'Keithbsmiley/swift.vim'
+NeoBundle 'posva/vim-vue'
 " NeoBundle 'davidhalter/jedi-vim'
 " if !has('mac') || has('mac') && has('gui')
 "     NeoBundle 'pyflakes.vim'
@@ -930,13 +932,23 @@ nnoremap <silent> <C-o> :<C-u>Unite -start-insert outline<CR>
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
-let g:airline_theme = 'powerlineish'
-let g:airline_powerline_fonts = 1
+let g:airline_theme = 'lucius'
+" let g:airline_powerline_fonts = 1
 
-let g:airline_left_sep = '⮀'
-let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
+" let g:airline_left_sep = '⮀'
+" let g:airline_left_alt_sep = '⮁'
+" let g:airline_right_sep = '⮂'
+" let g:airline_right_alt_sep = '⮃'
+" let g:airline_symbols.branch = '⭠'
+" let g:airline_symbols.readonly = '⭤'
+" let g:airline_symbols.linenr = '⭡'
+" let g:airline_symbols.paste = '∥'
+" let g:airline_whitespace_symbol = 'Ξ'
+
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = '⭠'
 let g:airline_symbols.readonly = '⭤'
 let g:airline_symbols.linenr = '⭡'
