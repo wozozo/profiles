@@ -3,6 +3,9 @@ source "${profiles}/functions"
 
 ## Pre Configurations {{{
 
+# for sierra
+ssh-add -A &> /dev/null
+
 # Avoid 'no matches found' error.
 setopt nullglob
 
@@ -267,11 +270,11 @@ clean_paths
 # }}}
 
 # nvm
-# if [ "`uname`" = "Darwin" ]; then
-#   source $(brew --prefix nvm)/nvm.sh
-# else
-#   [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-# fi
+if [ "`uname`" = "Darwin" ]; then
+  source $(brew --prefix nvm)/nvm.sh
+else
+  [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

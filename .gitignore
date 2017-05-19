@@ -5,3 +5,5 @@
 .vagrant
 .direnv
 .envrc
+.vscode
+node_modules
