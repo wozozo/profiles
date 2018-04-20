@@ -36,10 +36,11 @@
 [github]
 	user = wozozo
 [ghq]
-	root = ~/repos/src
+	root = ~/src
 	root = ~/Development
 	root = ~/.go/src
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+	process = git-lfs filter-process

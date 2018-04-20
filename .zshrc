@@ -265,16 +265,16 @@ init_additionl_configration "*.zsh"
 ## Post Configurations {{{
 
 # Cleanup PATH, MANPATH.
-clean_paths
+# clean_paths
 
 # }}}
 
 # nvm
-if [ "`uname`" = "Darwin" ]; then
-  source $(brew --prefix nvm)/nvm.sh
-else
-  [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-fi
+# if [ "`uname`" = "Darwin" ]; then
+#   source $(brew --prefix nvm)/nvm.sh
+# else
+#   [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+# fi
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -294,3 +294,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 eval "$(direnv hook zsh)"
 [[ -s ~/.pythonz/etc/bashrc ]] && source ~/.pythonz/etc/bashrc
+
+ssh-add -A &> /dev/null
+
+export PATH=~/dev/flutter/bin:$PATH
