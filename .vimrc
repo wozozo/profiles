@@ -8,8 +8,6 @@ if !exists('s:loaded_vimrc')
   set nocompatible
 endif
 
-" We have now 64 bit Windows.
-let s:has_win = has('win32') || has('win64')
 
 " Reset all autocmd defined in this file.
 augroup MyAutoCommands
@@ -218,29 +216,18 @@ augroup MyAutoCommands
   autocmd FileType ruby,eruby,haml setlocal tabstop=2 shiftwidth=2 expandtab
   autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
   autocmd FileType vim setlocal tabstop=2 shiftwidth=2 expandtab
-  autocmd FileType actionscript setlocal fileencoding=utf-8 tabstop=4 shiftwidth=4 noexpandtab
   autocmd FileType php setlocal tabstop=4 shiftwidth=4 expandtab
-  autocmd FileType thrift setlocal tabstop=2 shiftwidth=2 expandtab
   autocmd FileType c,cpp,objc setlocal tabstop=4 shiftwidth=4 expandtab
+  autocmd FileType vue syntax setlocal tabstop=2 shiftwidth=2 expandtab
 
   " Mapping file types
-  autocmd BufNewFile,BufRead *.as setlocal filetype=actionscript tabstop=2 shiftwidth=2 expandtab
-  autocmd BufNewFile,BufRead *.rl setlocal filetype=ragel
-  autocmd BufNewFile,BufRead *.srt setlocal filetype=srt
   autocmd BufNewFile,BufRead nginx.* setlocal filetype=nginx
-  autocmd BufNewFile,BufRead Portfile setlocal filetype=macports
-  autocmd BufNewFile,BufRead *.vcf setlocal filetype=vcard
   autocmd BufNewFile,BufRead *.module setlocal filetype=php
   autocmd BufNewFile,BufRead *.mustache setlocal syntax=mustache
   autocmd BufNewFile,BufRead *.json setlocal filetype=json
-  autocmd BufNewFile,BufRead *.pp setlocal filetype=puppet
-  autocmd BufNewFile,BufRead *.mm setlocal filetype=cpp
-  autocmd BufNewFile,BufRead *.thrift setlocal filetype=thrift
   autocmd BufNewFile,BufRead *.twig setlocal filetype=htmldjango
   autocmd BufNewFile,BufRead *.scss setlocal filetype=scss
-  autocmd BufNewFile,BufRead *.coffee setlocal filetype=coffee
-  autocmd BufNewFile,BufRead *.less setlocal filetype=less
-  autocmd BufNewFile,BufRead *.swift setlocal filetype=swift
+  autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 
   " Support grepedit comamnd. See ~/.profiles/bin/grepedit
   autocmd BufRead grepedit.tmp.* setlocal filetype=grepedit
@@ -702,11 +689,6 @@ if filereadable($VIM . '/vimrc') && filereadable($VIM . '/ViMrC')
   set tags=./tags,tags
 endif
 
-" On Windows, if $PATH doesn't includes $VIM, it can not find out the exe file
-if s:has_win && $PATH !~? '\(^\|;\)' . escape($VIM, '\\') . '\(;\|$\)'
-  let $PATH = $VIM . ';' . $PATH
-endif
-
 " I don't want to use Japanese menu on MacVim
 if has("gui_macvim")
   set langmenu=none
@@ -754,15 +736,13 @@ filetype on
 autocmd MyAutoCommands FileType gitcommit DiffGitCached
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'Shougo/vimproc', { 'build' : {
+NeoBundle 'Shougo/vimproc.vim', { 'build' : {
   \  'mac': 'make -f make_mac.mak',
   \  'unix': 'make -f make_unix.mak'
   \  },
   \ }
-NeoBundle 'Shougo/vimfiler'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-visualstar'
@@ -771,15 +751,8 @@ NeoBundle 'mattn/emmet-vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'h1mesuke/vim-alignta'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'cakebaker/scss-syntax.vim'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'hail2u/vim-css3-syntax'
-NeoBundle 'taku-o/vim-alice-map'
-NeoBundle 'soh335/vim-ref-pman'
-NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'groenewege/vim-less'
 NeoBundle 'mileszs/ack.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'sgur/ctrlp-extensions.vim'
@@ -790,27 +763,17 @@ NeoBundle 'bling/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'matchit.zip'
 NeoBundle 'SQLUtilities'
-NeoBundle 'grep.vim'
 NeoBundle 'nginx.vim'
 NeoBundle 'django.vim'
 NeoBundle 'vim-scripts/HTML-AutoCloseTag'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kana/vim-smartinput'
-" NeoBundle 'mitechie/pyflakes-pathogen'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'moznion/unite-git-conflict.vim'
 NeoBundle 'osyo-manga/vim-anzu'
-NeoBundle 'croaky/vim-colors-github'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'tell-k/vim-autopep8'
-NeoBundle 'cohama/agit.vim'
-NeoBundle 'Keithbsmiley/swift.vim'
 NeoBundle 'posva/vim-vue'
-" NeoBundle 'davidhalter/jedi-vim'
-" if !has('mac') || has('mac') && has('gui')
-"     NeoBundle 'pyflakes.vim'
-" endif
 
 " QuickRun
 
@@ -840,23 +803,11 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_max_height = &lines
 " 1 - the parent directory of the current file.
 " 2 - the nearest ancestor that contains one of these directories/files
-" 0 - don窶冲 manage working directory
+" 0 - don't manage working directory
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_extensions = ['cmdline', 'menu']
 
-" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-
-" neocomplcache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_underbar_completion = 1
-
-" Disable neocomplcache on special cases.
-let g:neocomplcache_lock_buffer_name_pattern = '\[Command Line\]'
-
-" let g:neocomplcache_snippets_dir = '~/.vim/snippets'
 let g:neosnippet#snippets_directory='~/.vim/snippets'
-" let g:neocomplcache_enable_auto_select = 1 " AutoComplPop like behavior.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 
@@ -922,46 +873,13 @@ let g:unite_source_outline_indent_width = 4
 nnoremap <silent> [unite]o :<C-u>Unite -start-insert outline<CR>
 nnoremap <silent> <C-o> :<C-u>Unite -start-insert outline<CR>
 
-" eregex.vim
-" nnoremap / :M/
-" nnoremap ? :M?
-" nnoremap ,/ /
-" nnoremap ,? ?
-
-" vim-airline
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_theme = 'lucius'
-" let g:airline_powerline_fonts = 1
-
-" let g:airline_left_sep = '⮀'
-" let g:airline_left_alt_sep = '⮁'
-" let g:airline_right_sep = '⮂'
-" let g:airline_right_alt_sep = '⮃'
-" let g:airline_symbols.branch = '⭠'
-" let g:airline_symbols.readonly = '⭤'
-" let g:airline_symbols.linenr = '⭡'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_whitespace_symbol = 'Ξ'
-
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = '⭠'
-let g:airline_symbols.readonly = '⭤'
-let g:airline_symbols.linenr = '⭡'
-let g:airline_symbols.paste = '∥'
-let g:airline_whitespace_symbol = 'Ξ'
-
 " zen-coding
 let g:user_zen_settings = {'indentation' : '  '}
 
 " syntastic
 let g:syntastic_mode_map = { 'mode': 'active',
   \ 'active_filetypes': [],
-  \ 'passive_filetypes': ['html', 'javascript', 'python', 'scss', 'less'] }
+  \ 'passive_filetypes': ['html', 'javascript', 'python', 'scss'] }
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_javascript_checker = 'gjslint'
 
@@ -970,8 +888,6 @@ nmap n <Plug>(anzu-n-with-echo)
 nmap N <Plug>(anzu-N-with-echo)
 nmap * <Plug>(anzu-star-with-echo)
 nmap # <Plug>(anzu-sharp-with-echo)
-
-" nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 
 set statusline=%{anzu#search_status()}
 
