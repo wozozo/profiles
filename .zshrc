@@ -131,7 +131,8 @@ if autoload +X vcs_info 2> /dev/null; then
 	}
 	precmd_functions+=precmd_vcs_info
 	# PROMPT="${PROMPT}%1(V.%F{green}%1v%f .)"
-	PROMPT="${PROMPT}%{$fg[blue]%}%~%{$reset_color%} %1(V.%F{green}%1v%f .)"
+	# PROMPT="${PROMPT}%{$fg[blue]%}%~%{$reset_color%} %1(V.%F{green}%1v%f .)"
+	PROMPT="%m %# %{$fg[blue]%}%~%{$reset_color%} %1(V.%F{green}%1v%f .)"
 fi
 
 # }}}
@@ -270,11 +271,8 @@ init_additionl_configration "*.zsh"
 # }}}
 
 # nvm
-# if [ "`uname`" = "Darwin" ]; then
-#   source $(brew --prefix nvm)/nvm.sh
-# else
-#   [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-# fi
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
