@@ -29,10 +29,6 @@
 	pager = less
 [push]
 	default = current
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
 [github]
 	user = wozozo
 [ghq]

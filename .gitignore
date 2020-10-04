@@ -2,9 +2,7 @@
 .vim/bundle/**/*
 !.vim/bundle/neobundle.vim
 *.un~
-.vagrant
+node_modules/
 .direnv
-.envrc
 .vscode
-node_modules
 .idea

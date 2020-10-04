@@ -1,8 +1,0 @@
-#!/bin/sh
-
-BASEDIR=`pwd`
-# output dir
-# CSSDIR="$BASEDIR/../public/css"
-CSSDIR="$BASEDIR"
-
-sass --scss --unix-newlines -t expanded --watch $BASEDIR:$CSSDIR
