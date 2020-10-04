@@ -1,8 +1,0 @@
-alias ..="cd .."
-alias l="ls -lh"
-alias ll="ls -alh"
-
-alias d="git diff"
-alias s="git status"
-alias gp="git pull"
-alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
