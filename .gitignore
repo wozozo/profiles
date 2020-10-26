@@ -1,6 +1,4 @@
 .DS_Store
-.vim/bundle/**/*
-!.vim/bundle/neobundle.vim
 *.un~
 node_modules/
 .direnv
