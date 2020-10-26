@@ -271,27 +271,31 @@ init_additionl_configration "*.zsh"
 # }}}
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # zaw
+if [ -s "`which $HOME/.profiles/zsh/zaw/zaw.zsh`" ]; then
 source $HOME/.profiles/zsh/zaw/zaw.zsh
 source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
 bindkey '^x^b' zaw-git-recent-branches
+fi
 
-# if [ -x "`which go`" ]; then
+if [ -x "`which go`" ]; then
 export GOROOT=`go env GOROOT`
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-# fi
+fi
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
 
+if [ -x "`which direnv`" ]; then
 eval "$(direnv hook zsh)"
 [[ -s ~/.pythonz/etc/bashrc ]] && source ~/.pythonz/etc/bashrc
+fi
 
 ssh-add -A &> /dev/null
 
