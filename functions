@@ -100,8 +100,6 @@ init_aliases() {
 	alias l="ls -l"
 	alias ll="ls -al"
 
-	alias ge="grepedit"
-
 	# git related
 	alias g="git"
 	alias d="git diff"
@@ -118,12 +116,8 @@ init_aliases() {
 	alias _now="date +%Y%m%d%H%M%S"
 	alias wget="wget -U Mozilla --no-check-certificate"
 	alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
-	alias rand="ruby -ropenssl -e 'print OpenSSL::Digest::SHA1.hexdigest(rand().to_s)'"
 	alias t="tree -C"
 	alias p="pbcopy"
-	alias vs="vagrant ssh"
-	alias vu="vagrant up"
-	# alias npm="yarn"
 
 	# user agent
 	alias curlh="curl -s -L -D - -o /dev/null $@"
