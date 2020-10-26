@@ -129,7 +129,6 @@ init_aliases() {
 		alias v='vim'
 	fi
 
-	code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 	pe() { peco | while read LINE; do $@ $LINE; done }
 	alias o='git ls-files | pe open'
 	alias e='ghq list -p | pe cd'
