@@ -106,6 +106,7 @@ init_aliases() {
 	alias dc="git diff --cached"
 	alias s="git status"
 	alias a="git add"
+	alias p="git push"
 	alias gp="git pull"
 	alias grf="git remote -v|cut -f1|sort|uniq|xargs -n 1 git fetch"
 	alias gb="git symbolic-ref HEAD|cut -d'/' -f3"
@@ -117,7 +118,6 @@ init_aliases() {
 	alias wget="wget -U Mozilla --no-check-certificate"
 	alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
 	alias t="tree -C"
-	alias p="pbcopy"
 
 	# user agent
 	alias curlh="curl -s -L -D - -o /dev/null $@"
