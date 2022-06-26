@@ -1,0 +1,4 @@
+#!/bin/sh
+
+sudo networksetup -setairportpower en0 off
+sudo networksetup -setairportpower en0 on
