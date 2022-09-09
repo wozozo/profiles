@@ -117,6 +117,8 @@ select-word-style bash
 
 # }}}
 
+source ~/.zprofile
+
 ## Zsh VCS Info and RPROMPT {{{
 
 if autoload +X vcs_info 2> /dev/null; then
@@ -278,9 +280,8 @@ init_additionl_configration "*.zsh"
 # [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 # [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-export NVM_DIR=~/.nvm
-. $(brew --prefix nvm)/nvm.sh
-
+# export NVM_DIR=~/.nvm
+# . $(brew --prefix nvm)/nvm.sh
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -309,3 +310,7 @@ ssh-add -A &> /dev/null
 
 export PATH=~/dev/flutter/bin:$PATH
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
