@@ -68,6 +68,9 @@ init_paths() {
 	export PATH="$HOME/.rbenv/bin:$PATH"
 	if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+	# homebrew
+	export PATH="/opt/homebrew/bin:$PATH"
+
 	# clean_paths
 }
 
@@ -92,6 +95,7 @@ init_aliases() {
 	local arch=`uname`
 	if [ "$arch" = "Darwin" -o "$arch" = "FreeBSD" ]; then
 		alias ls='ls -hG'
+		alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
 	else
 		alias ls='ls -p -h --show-control-chars --color=auto'
 	fi
