@@ -286,19 +286,38 @@ init_additionl_configration "*.zsh"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # zaw
-if [ -s "$HOME/.profiles/zsh/zaw/zaw.zsh" ]; then
-source $HOME/.profiles/zsh/zaw/zaw.zsh
-source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
-bindkey '^x^b' zaw-git-recent-branches
-fi
+# if [ -s "$HOME/.profiles/zsh/zaw/zaw.zsh" ]; then
+# source $HOME/.profiles/zsh/zaw/zaw.zsh
+# source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
+# bindkey '^x^b' zaw-git-recent-branches
+# fi
+
+source <(fzf --zsh)
+source ~/.profiles/fzf-git/fzf-git.sh
+
+# git checkout branches
+# 関数定義
+gco() {
+   _fzf_git_branches --no-multi | xargs git checkout
+}
+
+# 関数を実行するためのキーバインディング
+run_gco() {
+   zle -I
+   gco
+   zle reset-prompt
+}
+
+# キーバインディング設定
+zle -N run_gco
+bindkey "^x^b" run_gco
+
 
 if [ -x "`which go`" ]; then
 export GOROOT=`go env GOROOT`
 export GOPATH=$HOME/.go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
-
-# vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:
 
 if [ -x "`which direnv`" ]; then
 eval "$(direnv hook zsh)"
@@ -311,3 +330,5 @@ export PATH=~/dev/flutter/bin:$PATH
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"

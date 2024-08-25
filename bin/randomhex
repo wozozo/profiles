@@ -1,3 +1,29 @@
 #!/bin/sh
 
-python3 -c "import random, string; print(''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range(20)))"
+# 初期値として文字列の長さを20に設定
+LENGTH=20
+# 記号の数のデフォルト値を0に設定（記号なし）
+SYMBOL_COUNT=0
+
+# オプションとして-nと-sを処理
+while getopts "n:s:" opt; do
+  case $opt in
+    n)
+      LENGTH=$OPTARG
+      ;;
+    s)
+      SYMBOL_COUNT=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# 英字と数字のみの部分の長さを計算
+NON_SYMBOL_LENGTH=$((LENGTH - SYMBOL_COUNT))
+
+# 英字、数字、記号を生成し、それらをランダムに並び替えて出力
+python3 -c "import random, string; chars = [random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range($NON_SYMBOL_LENGTH)] + [random.SystemRandom().choice(string.punctuation) for _ in range($SYMBOL_COUNT)]; random.shuffle(chars); print(''.join(chars))"
+
