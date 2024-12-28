@@ -1,0 +1,7 @@
+theme = ayu
+font-family = Fira Code Medium
+
+background-opacity = 0.95
+# background-blur-radius = 20
+macos-titlebar-style = transparent
+
