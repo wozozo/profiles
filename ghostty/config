@@ -1,7 +1,20 @@
 theme = ayu
-font-family = Fira Code Medium
+font-family = Fira Code Regular
+# font-family = Firple Regular
+# font-feature = -dlig
 
 background-opacity = 0.95
 # background-blur-radius = 20
 macos-titlebar-style = transparent
 
+cursor-style = block
+
+# macos-option-as-alt = true
+# keybind = cmd+right=text:\x05
+# keybind = cmd+left=text:\x01
+# keybind = alt+left=esc:b
+# keybind = alt+right=esc:f
+
+window-padding-x = 7
+window-padding-y = 5
+window-padding-balance = true
