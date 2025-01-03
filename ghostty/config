@@ -1,9 +1,9 @@
-theme = ayu
+# theme = Banana Blueberry
 font-family = Fira Code Regular
 # font-family = Firple Regular
 # font-feature = -dlig
 
-background-opacity = 0.95
+# background-opacity = 0.95
 # background-blur-radius = 20
 macos-titlebar-style = transparent
 
