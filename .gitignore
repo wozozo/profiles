@@ -4,6 +4,7 @@ node_modules/
 .direnv
 .vscode
 .idea
+.venv/
 venv/
 *.pyc
 *.sqlite3
