@@ -321,7 +321,6 @@ fi
 
 if [ -x "`which direnv`" ]; then
 eval "$(direnv hook zsh)"
-[[ -s ~/.pythonz/etc/bashrc ]] && source ~/.pythonz/etc/bashrc
 fi
 
 ssh-add -A &> /dev/null
