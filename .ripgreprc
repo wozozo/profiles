@@ -1,0 +1,9 @@
+# Search
+--color=auto
+
+# Don't search
+--glob=!log/
+--glob=!tags/
+--glob=!tmp/
+--type-add 'junk:*.pyc'
+--no-ignore

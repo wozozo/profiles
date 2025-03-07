@@ -18,3 +18,5 @@ cursor-style = block
 window-padding-x = 7
 window-padding-y = 5
 window-padding-balance = true
+
+window-inherit-working-directory = false
