@@ -274,26 +274,6 @@ init_additionl_configration "*.zsh"
 
 # }}}
 
-# nvm
-# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-# export NVM_DIR=~/.nvm
-# . $(brew --prefix nvm)/nvm.sh
-
-
-
-# zaw
-# if [ -s "$HOME/.profiles/zsh/zaw/zaw.zsh" ]; then
-# source $HOME/.profiles/zsh/zaw/zaw.zsh
-# source $HOME/.profiles/zsh/zaw-sources/git-recent-branches.zsh
-# bindkey '^x^b' zaw-git-recent-branches
-# fi
-
 source <(fzf --zsh)
 source ~/.profiles/fzf-git/fzf-git.sh
 
@@ -314,7 +294,6 @@ run_gco() {
 zle -N run_gco
 bindkey "^x^b" run_gco
 
-
 if [ -x "`which go`" ]; then
 export GOROOT=`go env GOROOT`
 export GOPATH=$HOME/.go
@@ -325,14 +304,10 @@ if [ -x "`which direnv`" ]; then
 eval "$(direnv hook zsh)"
 fi
 
-ssh-add -A &> /dev/null
-
 export PATH=~/dev/flutter/bin:$PATH
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-# source ~/.config/op/plugins.sh
 
 # Added by Windsurf
 if [ -s "$HOME/.codeium/windsurf/bin/windsurf.zsh" ]; then

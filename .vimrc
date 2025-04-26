@@ -195,6 +195,8 @@ autocmd MyAutoCommands WinEnter * checktime
 
 " Enable syntax color.
 syntax enable
+" for TypeScript
+set re=0
 filetype plugin on
 
 " Enable indent.
