@@ -111,6 +111,10 @@ setopt auto_pushd
 # Don't report the status of background and suspended jobs.
 setopt no_check_jobs
 
+# Ignore space in history
+# コマンドの先頭にスペースがある場合、履歴に含めない
+setopt HIST_IGNORE_SPACE
+
 # Remove directory word by C-w.
 autoload -Uz select-word-style
 select-word-style bash
@@ -282,8 +286,6 @@ init_additionl_configration "*.zsh"
 # . $(brew --prefix nvm)/nvm.sh
 
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
 
 # zaw
 # if [ -s "$HOME/.profiles/zsh/zaw/zaw.zsh" ]; then
@@ -326,8 +328,13 @@ fi
 ssh-add -A &> /dev/null
 
 export PATH=~/dev/flutter/bin:$PATH
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# source ~/.config/op/plugins.sh
+
+# Added by Windsurf
+if [ -s "$HOME/.codeium/windsurf/bin/windsurf.zsh" ]; then
+		source $HOME/.codeium/windsurf/bin/windsurf.zsh
+fi
