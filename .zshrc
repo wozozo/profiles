@@ -150,7 +150,7 @@ compinit
 . $HOME/.profiles/bin/cdd
 
 chpwd() {
-    _cdd_chpwd
+  _cdd_chpwd
 }
 
 # Colors completions.
@@ -255,7 +255,7 @@ bindkey -M viins '\C-t' transpose-words
 
 # clear Terminal.app title
 precmd() {
-    echo -ne "\033]0;\007"
+  echo -ne "\033]0;\007"
 }
 
 # }}}
@@ -280,14 +280,14 @@ source ~/.profiles/fzf-git/fzf-git.sh
 # git checkout branches
 # 関数定義
 gco() {
-   _fzf_git_branches --no-multi | xargs git checkout
+  _fzf_git_branches --no-multi | xargs git checkout
 }
 
 # 関数を実行するためのキーバインディング
 run_gco() {
-   zle -I
-   gco
-   zle reset-prompt
+  zle -I
+  gco
+  zle reset-prompt
 }
 
 # キーバインディング設定
@@ -311,5 +311,10 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # Added by Windsurf
 if [ -s "$HOME/.codeium/windsurf/bin/windsurf.zsh" ]; then
-		source $HOME/.codeium/windsurf/bin/windsurf.zsh
+  export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+source $HOME/.codeium/windsurf/bin/windsurf.zsh
+fi
+
+if [ -d "/Users/Shared/DBngin/postgresql/17.0/bin" ]; then
+	export PATH="/Users/Shared/DBngin/postgresql/17.0/bin:$PATH"
 fi

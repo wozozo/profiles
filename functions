@@ -1,157 +1,157 @@
 init_editor() {
-	for i in vim vi; do
-		if which "$i" 2>&1 1>/dev/null; then
-			export EDITOR="$i"
-			break
-		fi
-	done
+  for i in vim vi; do
+    if which "$i" 2>&1 1>/dev/null; then
+      export EDITOR="$i"
+      break
+    fi
+  done
 }
 
 init_lang() {
-	export LANG=en_US.UTF-8
+  export LANG=en_US.UTF-8
 }
 
 init_paths() {
-	if [ -x /usr/libexec/path_helper ]; then
-		# path_helper needs MANPATH env to assign values.
-		PATH=''
-		source /etc/profile
-		export MANPATH=$MANPATH
-		eval `/usr/libexec/path_helper -s`
-	fi
+  if [ -x /usr/libexec/path_helper ]; then
+    # path_helper needs MANPATH env to assign values.
+    PATH=''
+    source /etc/profile
+    export MANPATH=$MANPATH
+    eval `/usr/libexec/path_helper -s`
+  fi
 
-	# /opt/local/bin, /usr/local/bin
-	for i in /usr/local /opt/local; do
-		local bin_path="$i/bin"
-		if [ -d "$bin_path" ]; then
-			PATH=$bin_path:$PATH
-		fi
-		local sbin_path="$i/sbin"
-		if [ -d "$sbin_path" ]; then
-			PATH=$sbin_path:$PATH
-		fi
-		local man_path="$i/share/man"
-		if [ -d "$man_path" ]; then
-			MANPATH=$man_path:$MANPATH
-		fi
-	done
+  # /opt/local/bin, /usr/local/bin
+  for i in /usr/local /opt/local; do
+    local bin_path="$i/bin"
+    if [ -d "$bin_path" ]; then
+      PATH=$bin_path:$PATH
+    fi
+    local sbin_path="$i/sbin"
+    if [ -d "$sbin_path" ]; then
+      PATH=$sbin_path:$PATH
+    fi
+    local man_path="$i/share/man"
+    if [ -d "$man_path" ]; then
+      MANPATH=$man_path:$MANPATH
+    fi
+  done
 
-	# /opt/(symlink)/bin, /usr/local/(symlink)/bin
-	for i in /usr/local/* /opt/*; do
-		if [ -L "$i" ]; then
-			local bin_path="$i/bin"
-			if [ -d "$bin_path" ]; then
-				PATH=$bin_path:$PATH
-			fi
-			local sbin_path="$i/sbin"
-			if [ -d "$sbin_path" ]; then
-				PATH=$sbin_path:$PATH
-			fi
-			local man_path="$i/share/man"
-			if [ -d "$man_path" ]; then
-				MANPATH=$man_path:$MANPATH
-			fi
-		fi
-	done
+  # /opt/(symlink)/bin, /usr/local/(symlink)/bin
+  for i in /usr/local/* /opt/*; do
+    if [ -L "$i" ]; then
+      local bin_path="$i/bin"
+      if [ -d "$bin_path" ]; then
+        PATH=$bin_path:$PATH
+      fi
+      local sbin_path="$i/sbin"
+      if [ -d "$sbin_path" ]; then
+        PATH=$sbin_path:$PATH
+      fi
+      local man_path="$i/share/man"
+      if [ -d "$man_path" ]; then
+        MANPATH=$man_path:$MANPATH
+      fi
+    fi
+  done
 
-	# profile bin path
-	export PATH="/usr/local/go/bin:$PATH"
+  # profile bin path
+  export PATH="/usr/local/go/bin:$PATH"
 
-	# profile bin path
-	export PATH="$profiles/bin:$PATH"
+  # profile bin path
+  export PATH="$profiles/bin:$PATH"
 
-	# local bin path
-	export PATH="$HOME/local/bin:$PATH"
-	export PATH="$HOME/.local/bin:$PATH"
+  # local bin path
+  export PATH="$HOME/local/bin:$PATH"
+  export PATH="$HOME/.local/bin:$PATH"
 
-	# rbenv
-	export PATH="$HOME/.rbenv/bin:$PATH"
-	if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+  # rbenv
+  export PATH="$HOME/.rbenv/bin:$PATH"
+  if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-	# homebrew
-	export PATH="/opt/homebrew/bin:$PATH"
+  # homebrew
+  export PATH="/opt/homebrew/bin:$PATH"
 
-	# clean_paths
+  # clean_paths
 }
 
 clean_paths() {
-	for i in PATH MANPATH; do
-		get_path_cleaned $i
-		eval "export $i=$result"
-	done
+  for i in PATH MANPATH; do
+    get_path_cleaned $i
+    eval "export $i=$result"
+  done
 }
 
 get_path_cleaned() {
-	result=$(eval "echo -n \$$1" \
-		| tr -s ':' '\n' \
-		| awk '!($0 in a){a[$0]; print}' \
-		| tr -s '\n' ':' \
-		| sed -e 's/:$//' \
-		| sed -e 's/^://')
+  result=$(eval "echo -n \$$1" \
+    | tr -s ':' '\n' \
+    | awk '!($0 in a){a[$0]; print}' \
+    | tr -s '\n' ':' \
+    | sed -e 's/:$//' \
+    | sed -e 's/^://')
 }
 
 init_aliases() {
-	# colors ls
-	local arch=`uname`
-	if [ "$arch" = "Darwin" -o "$arch" = "FreeBSD" ]; then
-		alias ls='ls -hG'
-		alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
-	else
-		alias ls='ls -p -h --show-control-chars --color=auto'
-	fi
+  # colors ls
+  local arch=`uname`
+  if [ "$arch" = "Darwin" -o "$arch" = "FreeBSD" ]; then
+    alias ls='ls -hG'
+    alias tailscale="/Applications/Tailscale.app/Contents/MacOS/Tailscale"
+  else
+    alias ls='ls -p -h --show-control-chars --color=auto'
+  fi
 
-	# ls
-	alias l="ls -l"
-	alias ll="ls -al"
+  # ls
+  alias l="ls -l"
+  alias ll="ls -al"
 
-	# git related
-	alias g="git"
-	alias d="git diff"
-	alias dc="git diff --cached"
-	alias s="git status"
-	alias a="git add"
-	alias p="git push"
-	alias gp="git pull"
-	alias grf="git remote -v|cut -f1|sort|uniq|xargs -n 1 git fetch"
-	alias gb="git symbolic-ref HEAD|cut -d'/' -f3"
-	alias gg="git gg"
-	alias gpoh="git push origin HEAD"
-	alias gpodh="git push origin :\$(git symbolic-ref HEAD|cut -d"/" -f3)"
+  # git related
+  alias g="git"
+  alias d="git diff"
+  alias dc="git diff --cached"
+  alias s="git status"
+  alias a="git add"
+  alias p="git push"
+  alias gp="git pull"
+  alias grf="git remote -v|cut -f1|sort|uniq|xargs -n 1 git fetch"
+  alias gb="git symbolic-ref HEAD|cut -d'/' -f3"
+  alias gg="git gg"
+  alias gpoh="git push origin HEAD"
+  alias gpodh="git push origin :\$(git symbolic-ref HEAD|cut -d"/" -f3)"
 
-	alias _now="date +%Y%m%d%H%M%S"
-	alias wget="wget -U Mozilla --no-check-certificate"
-	alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
-	alias t="tree -C"
+  alias _now="date +%Y%m%d%H%M%S"
+  alias wget="wget -U Mozilla --no-check-certificate"
+  alias fn="find . -not -ipath '*/tmp/*' -not -ipath '*/.*/*' -name "
+  alias t="tree -C"
 
-	# user agent
-	alias curlh="curl -s -L -D - -o /dev/null $@"
-	alias wgeth="wget -S -q -O /dev/null $@"
+  # user agent
+  alias curlh="curl -s -L -D - -o /dev/null $@"
+  alias wgeth="wget -S -q -O /dev/null $@"
 
-	# if we have vim, vi is vim also shotcut v is vim.
-	if type 'vim' > /dev/null 2>&1; then
-		alias vi='vim'
-		alias v='vim'
-	fi
+  # if we have vim, vi is vim also shotcut v is vim.
+  if type 'vim' > /dev/null 2>&1; then
+    alias vi='vim'
+    alias v='vim'
+  fi
 
-	pe() { peco | while read LINE; do $@ $LINE; done }
-	alias o="git ls-files | pe open"
-	alias e="ghq list -p | pe cd"
-	alias up="docker-compose up"
-	alias down="docker-compose down"
-	alias stop="docker-compose stop"
-	alias downup="down && up"
-	alias stopup="stop && up"
+  pe() { peco | while read LINE; do $@ $LINE; done }
+  alias o="git ls-files | pe open"
+  alias e="ghq list -p | pe cd"
+  alias up="docker-compose up"
+  alias down="docker-compose down"
+  alias stop="docker-compose stop"
+  alias downup="down && up"
+  alias stopup="stop && up"
 }
 
 init_additionl_configration() {
-	for i in "$profiles" "$profiles/local"; do
-		# Additional initialize scripts
-		for f in "$i"/$1 "$i"/*.sh; do
-			if [ -f "$f" ]; then
-				source "$f"
-			fi
-		done
-	done
+  for i in "$profiles" "$profiles/local"; do
+    # Additional initialize scripts
+    for f in "$i"/$1 "$i"/*.sh; do
+      if [ -f "$f" ]; then
+        source "$f"
+      fi
+    done
+  done
 }
 
 # vim:ts=4:sw=4:noexpandtab:foldmethod=marker:nowrap:ft=sh:
