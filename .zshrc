@@ -228,28 +228,8 @@ zle -N history-beginning-search-forward-end history-search-end
 ## Zsh Keybinds {{{
 ## based on http://github.com/kana/config/
 
-# To delete characters beyond the starting point of the current insertion.
-bindkey -M viins '\C-h' backward-delete-char
-bindkey -M viins '\C-w' backward-kill-word
-bindkey -M viins '\C-u' backward-kill-line
-
-# Undo/redo more than once.
-bindkey -M vicmd 'u' undo
-bindkey -M vicmd '\C-r' redo
-
-# History
-# See also 'autoload history-search-end'.
-bindkey -M vicmd '/' history-incremental-search-backward
-bindkey -M vicmd '?' history-incremental-search-forward
-bindkey -M viins '^p' history-beginning-search-backward-end
-bindkey -M viins '^n' history-beginning-search-forward-end
-
-bindkey -M emacs '^p' history-beginning-search-backward-end
-bindkey -M emacs '^n' history-beginning-search-forward-end
-
-# Transpose
-bindkey -M vicmd '\C-t' transpose-words
-bindkey -M viins '\C-t' transpose-words
+# Initialize keybindings.
+init_keybinds
 
 # }}}
 
@@ -272,49 +252,13 @@ init_additionl_configration "*.zsh"
 # Cleanup PATH, MANPATH.
 # clean_paths
 
+# Initialize environment variables.
+init_env_vars
+
+# Initialize gco function and keybinding.
+init_gco
+
 # }}}
 
 source <(fzf --zsh)
 source ~/.profiles/fzf-git/fzf-git.sh
-
-# git checkout branches
-# 関数定義
-gco() {
-  _fzf_git_branches --no-multi | xargs git checkout
-}
-
-# 関数を実行するためのキーバインディング
-run_gco() {
-  zle -I
-  gco
-  zle reset-prompt
-}
-
-# キーバインディング設定
-zle -N run_gco
-bindkey "^x^b" run_gco
-
-if [ -x "`which go`" ]; then
-export GOROOT=`go env GOROOT`
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-fi
-
-if [ -x "`which direnv`" ]; then
-eval "$(direnv hook zsh)"
-fi
-
-export PATH=~/dev/flutter/bin:$PATH
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-
-# Added by Windsurf
-if [ -s "$HOME/.codeium/windsurf/bin/windsurf.zsh" ]; then
-  export PATH="$HOME/.codeium/windsurf/bin:$PATH"
-source $HOME/.codeium/windsurf/bin/windsurf.zsh
-fi
-
-if [ -d "/Users/Shared/DBngin/postgresql/17.0/bin" ]; then
-	export PATH="/Users/Shared/DBngin/postgresql/17.0/bin:$PATH"
-fi
