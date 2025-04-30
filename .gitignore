@@ -1,11 +1,25 @@
+# macOS specific
 .DS_Store
+
+# Editor specific
 *.un~
-node_modules/
-.direnv
-.vscode
-.idea
+.vscode/
+.idea/
+.vim/.netrwhist
+
+# Python specific
 .venv/
 venv/
 *.pyc
+
+# Node.js specific
+node_modules/
+
+# Database specific
 *.sqlite3
-.vim/.netrwhist
+
+# Environment specific
+.direnv/
+
+# dotenvx specific
+.env.keys
