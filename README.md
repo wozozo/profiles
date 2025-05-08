@@ -20,9 +20,13 @@ Following next step to use this configration files.
     % git submodule update
     % ./setup
 
+To replace existing files, use the `replace` option:
+
+    % ./setup replace
+
 Uninstall
 =========
 
 Using setup command, you can remove all symlinks to the configuration files located in ~/.
 
-    % ~/.profiles/setup --uninstall
+    % ~/.profiles/setup uninstall
