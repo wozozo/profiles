@@ -5,8 +5,18 @@ LENGTH=20
 # 記号の数のデフォルト値を0に設定（記号なし）
 SYMBOL_COUNT=0
 
+# ヘルプメッセージを表示する関数
+show_help() {
+  echo "Usage: randomhex [options]"
+  echo "Options:"
+  echo "  -n LENGTH    Specify the length of the random string (default: 20)"
+  echo "  -s COUNT     Specify the number of symbols in the string (default: 0)"
+  echo "  -h, --help   Display this help message"
+  exit 0
+}
+
 # オプションとして-nと-sを処理
-while getopts "n:s:" opt; do
+while getopts "n:s:h-:" opt; do
   case $opt in
     n)
       LENGTH=$OPTARG
@@ -14,7 +24,21 @@ while getopts "n:s:" opt; do
     s)
       SYMBOL_COUNT=$OPTARG
       ;;
-    \?)
+    h)
+      show_help
+      ;;
+    -)
+      case "$OPTARG" in
+        help)
+          show_help
+          ;;
+        *)
+          echo "Invalid option: --$OPTARG" >&2
+          exit 1
+          ;;
+      esac
+      ;;
+    ?)
       echo "Invalid option: -$OPTARG" >&2
       exit 1
       ;;
@@ -26,4 +50,3 @@ NON_SYMBOL_LENGTH=$((LENGTH - SYMBOL_COUNT))
 
 # 英字、数字、記号を生成し、それらをランダムに並び替えて出力
 python3 -c "import random, string; chars = [random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits) for _ in range($NON_SYMBOL_LENGTH)] + [random.SystemRandom().choice(string.punctuation) for _ in range($SYMBOL_COUNT)]; random.shuffle(chars); print(''.join(chars))"
-
