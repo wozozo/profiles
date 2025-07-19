@@ -49,3 +49,24 @@ do
 		ln -s "${i}" "${HOME}/${f}"
 	fi
 done
+
+# Handle .claude directory separately
+if [ -d "${CURRENT_DIR}/.claude/commands" ]; then
+	if [ ! -d "${HOME}/.claude" ]; then
+		echo "create directory ${HOME}/.claude"
+		mkdir -p "${HOME}/.claude"
+	fi
+
+	if [ -e "${HOME}/.claude/commands" -o -h "${HOME}/.claude/commands" ]; then
+		echo ".claude/commands already exists."
+		if [ "$replace" -o "$uninstall" ]; then
+			echo "remove .claude/commands."
+			rm -rf "${HOME}/.claude/commands"
+		fi
+	fi
+
+	if [ ! "$uninstall" ]; then
+		echo "create symlink .claude/commands to ${HOME}/.claude/."
+		ln -s "${CURRENT_DIR}/.claude/commands" "${HOME}/.claude/commands"
+	fi
+fi
