@@ -71,6 +71,9 @@ init_paths() {
   # homebrew
   export PATH="/opt/homebrew/bin:$PATH"
 
+  # cargo/rust
+  export PATH="$HOME/.cargo/bin:$PATH"
+
   # clean_paths
 }
 
