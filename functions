@@ -144,6 +144,9 @@ init_aliases() {
   alias stop="docker-compose stop"
   alias downup="down && up"
   alias stopup="stop && up"
+
+  # Claude Code alias
+  alias claude="~/.claude/local/claude"
 }
 
 init_keybinds() {
