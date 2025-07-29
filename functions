@@ -120,6 +120,7 @@ init_aliases() {
   alias gg="git gg"
   alias gpoh="git push origin HEAD"
   alias gpodh="git push origin :\$(git symbolic-ref HEAD|cut -d"/" -f3)"
+  alias git-delete-merged="git branch --merged | grep -v '*' | grep -vE '^(main|master)$' | xargs git branch -d"
 
   alias _now="date +%Y%m%d%H%M%S"
   alias wget="wget -U Mozilla --no-check-certificate"
