@@ -1,0 +1,40 @@
+{
+  "model": "opus",
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(pwd:*)",
+      "Bash(cd:*)",
+
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(rg:*)",
+
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(pnpm:*)",
+      "Bash(pnpx:*)",
+      "Bash(node:*)",
+      "Bash(python:*)",
+      "Bash(make:*)",
+
+      "Bash(jq:*)",
+      "Bash(curl:*)",
+      "Bash(echo:*)",
+      "Bash(sqlite:*)",
+
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:developer.mozilla.org)",
+      "WebFetch(domain:npmjs.com)",
+      "WebFetch(domain:nextjs.org)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)"
+    ]
+  }
+}

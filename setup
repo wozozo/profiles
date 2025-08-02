@@ -24,7 +24,7 @@ do
 
 	f=`basename "${i}"`
 	ignored=0
-	for ignore in . .. .git .gitmodules .DS_Store
+	for ignore in . .. .git .gitmodules .DS_Store .claude
 	do
 		if [ "${f}" = "${ignore}" ]; then
 			ignored=1
@@ -51,12 +51,13 @@ do
 done
 
 # Handle .claude directory separately
-if [ -d "${CURRENT_DIR}/.claude/commands" ]; then
-	if [ ! -d "${HOME}/.claude" ]; then
-		echo "create directory ${HOME}/.claude"
-		mkdir -p "${HOME}/.claude"
-	fi
+if [ ! -d "${HOME}/.claude" ]; then
+	echo "create directory ${HOME}/.claude"
+	mkdir -p "${HOME}/.claude"
+fi
 
+# Handle .claude/commands
+if [ -d "${CURRENT_DIR}/.claude/commands" ]; then
 	if [ -e "${HOME}/.claude/commands" -o -h "${HOME}/.claude/commands" ]; then
 		echo ".claude/commands already exists."
 		if [ "$replace" -o "$uninstall" ]; then
@@ -65,8 +66,24 @@ if [ -d "${CURRENT_DIR}/.claude/commands" ]; then
 		fi
 	fi
 
-	if [ ! "$uninstall" ]; then
+	if [ ! "$uninstall" -a ! -e "${HOME}/.claude/commands" ]; then
 		echo "create symlink .claude/commands to ${HOME}/.claude/."
 		ln -s "${CURRENT_DIR}/.claude/commands" "${HOME}/.claude/commands"
+	fi
+fi
+
+# Handle .claude/settings.json
+if [ -f "${CURRENT_DIR}/.claude/settings.json" ]; then
+	if [ -e "${HOME}/.claude/settings.json" -o -h "${HOME}/.claude/settings.json" ]; then
+		echo ".claude/settings.json already exists."
+		if [ "$replace" -o "$uninstall" ]; then
+			echo "remove .claude/settings.json."
+			rm -rf "${HOME}/.claude/settings.json"
+		fi
+	fi
+
+	if [ ! "$uninstall" -a ! -e "${HOME}/.claude/settings.json" ]; then
+		echo "create symlink .claude/settings.json to ${HOME}/.claude/."
+		ln -s "${CURRENT_DIR}/.claude/settings.json" "${HOME}/.claude/settings.json"
 	fi
 fi
