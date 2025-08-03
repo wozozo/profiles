@@ -7,11 +7,12 @@
       "Bash(cat:*)",
       "Bash(pwd:*)",
       "Bash(cd:*)",
-
+      "Bash(echo:*)",
+      "Bash(print:*):*",
+      "Bash(yes:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
       "Bash(rg:*)",
-
       "Bash(npm:*)",
       "Bash(npx:*)",
       "Bash(pnpm:*)",
@@ -19,12 +20,10 @@
       "Bash(node:*)",
       "Bash(python:*)",
       "Bash(make:*)",
-
       "Bash(jq:*)",
       "Bash(curl:*)",
       "Bash(echo:*)",
       "Bash(sqlite:*)",
-
       "WebFetch(domain:github.com)",
       "WebFetch(domain:vercel.com)",
       "WebFetch(domain:docs.anthropic.com)",
