@@ -1,0 +1,154 @@
+#!/bin/bash
+
+# デフォルト値の設定
+LINE_THRESHOLD=500
+EXTENSIONS=()
+TARGET_DIR="."
+IGNORE_DIRS=()
+
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        -t|--threshold)
+            LINE_THRESHOLD="$2"
+            shift 2
+            ;;
+        -t=*|--threshold=*)
+            LINE_THRESHOLD="${1#*=}"
+            shift
+            ;;
+        -e|--extensions)
+            shift
+            while [[ "$1" != "" && "$1" != -* ]]; do
+                EXTENSIONS+=("$1")
+                shift
+            done
+            ;;
+        -e=*|--extensions=*)
+            IFS=',' read -r -a tmp_ext <<< "${1#*=}"
+            EXTENSIONS=("${tmp_ext[@]}")
+            shift
+            ;;
+        -d|--directory)
+            TARGET_DIR="$2"
+            shift 2
+            ;;
+        -d=*|--directory=*)
+            TARGET_DIR="${1#*=}"
+            shift
+            ;;
+        -i|--ignore)
+            shift
+            while [[ "$1" != "" && "$1" != -* ]]; do
+                IGNORE_DIRS+=("$1")
+                shift
+            done
+            ;;
+        -i=*|--ignore=*)
+            IFS=',' read -r -a tmp_ignore <<< "${1#*=}"
+            IGNORE_DIRS=("${tmp_ignore[@]}")
+            shift
+            ;;
+        -h|--help)
+            echo "loc - Lines of Code scanner"
+            echo ""
+            echo "Usage: loc [OPTIONS]"
+            echo ""
+            echo "指定した行数以上のファイルを検索し、行数順に表示します。"
+            echo ""
+            echo "Options:"
+            echo "  -t, --threshold NUM     行数の閾値を指定 (デフォルト: 500)"
+            echo "  -e, --extensions EXT    対象拡張子を指定 (例: .tsx .ts)"
+            echo "  -d, --directory DIR     検索対象ディレクトリ (デフォルト: .)"
+            echo "  -i, --ignore DIR        無視するディレクトリ (例: node_modules)"
+            echo "  -h, --help              このヘルプを表示"
+            echo ""
+            echo "Examples:"
+            echo "  loc                              # 500行以上のファイルを表示"
+            echo "  loc -t 100                       # 100行以上のファイルを表示"
+            echo "  loc -t 100 -e .tsx .ts           # TypeScriptファイルのみ"
+            echo "  loc -d ./src -i ./src/generated  # srcディレクトリでgeneratedを除外"
+            echo ""
+            echo "Default extensions:"
+            echo "  .js .jsx .ts .tsx .py .java .cpp .c .h .go .rs"
+            echo ""
+            echo "Default ignore directories:"
+            echo "  node_modules .git dist build coverage __pycache__ .pytest_cache"
+            exit 0
+            ;;
+        *)
+            echo "loc: 不明なオプション '$1'"
+            echo "詳細は 'loc --help' を参照してください。"
+            exit 1
+            ;;
+    esac
+done
+
+# 拡張子が指定されていない場合のデフォルト
+if [ ${#EXTENSIONS[@]} -eq 0 ]; then
+    EXTENSIONS=(".js" ".jsx" ".ts" ".tsx" ".py" ".java" ".cpp" ".c" ".h" ".go" ".rs")
+fi
+
+# 無視するディレクトリのデフォルト設定
+if [ ${#IGNORE_DIRS[@]} -eq 0 ]; then
+    IGNORE_DIRS=("node_modules" ".git" "dist" "build" "coverage" "__pycache__" ".pytest_cache")
+fi
+
+# ディレクトリの存在確認
+if [ ! -d "$TARGET_DIR" ]; then
+    echo "エラー: ディレクトリ '$TARGET_DIR' が存在しません"
+    exit 1
+fi
+
+# ファイル検索と行数カウント
+echo "LOC Scanner - Lines of Code"
+echo "検索対象: $TARGET_DIR"
+echo "閾値: ${LINE_THRESHOLD}行以上"
+echo "拡張子: ${EXTENSIONS[@]}"
+echo "除外: ${IGNORE_DIRS[@]}"
+echo "----------------------------------------"
+
+for ext in "${EXTENSIONS[@]}"; do
+    # findコマンドで拡張子に一致するファイルを検索
+    find "$TARGET_DIR" -type f -name "*${ext}" 2>/dev/null | while read -r file; do
+        # 無視ディレクトリのチェック
+        should_ignore=false
+        for ignore_dir in "${IGNORE_DIRS[@]}"; do
+            # 絶対パスの正規化
+            abs_file=$(cd "$(dirname "$file")" 2>/dev/null && pwd)/$(basename "$file")
+            abs_ignore=""
+            
+            # 無視ディレクトリの絶対パスを取得
+            if [[ "$ignore_dir" == /* ]]; then
+                abs_ignore="$ignore_dir"
+            elif [[ "$ignore_dir" == ./* ]] || [[ "$ignore_dir" == ../* ]]; then
+                # 相対パスの場合は絶対パスに変換
+                if [ -d "$ignore_dir" ]; then
+                    abs_ignore=$(cd "$ignore_dir" 2>/dev/null && pwd)
+                fi
+            else
+                # ディレクトリ名のみの場合は、パスに含まれているかチェック
+                if [[ "$file" == *"/$ignore_dir/"* ]] || [[ "$file" == "./$ignore_dir/"* ]]; then
+                    should_ignore=true
+                    break
+                fi
+            fi
+            
+            # 絶対パスで比較
+            if [ -n "$abs_ignore" ] && [ -n "$abs_file" ]; then
+                if [[ "$abs_file" == "$abs_ignore"/* ]]; then
+                    should_ignore=true
+                    break
+                fi
+            fi
+        done
+        
+        if [ "$should_ignore" = false ]; then
+            # ファイルの行数をカウント
+            lines=$(wc -l < "$file" 2>/dev/null)
+            if [ $? -eq 0 ] && [ "$lines" -ge "$LINE_THRESHOLD" ]; then
+                printf "%-60s %6d 行\n" "$file" "$lines"
+            fi
+        fi
+    done
+done | sort -k2 -nr
+
