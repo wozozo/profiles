@@ -87,3 +87,19 @@ if [ -f "${CURRENT_DIR}/.claude/settings.json" ]; then
 		ln -s "${CURRENT_DIR}/.claude/settings.json" "${HOME}/.claude/settings.json"
 	fi
 fi
+
+# Handle .claude/statusline.js
+if [ -f "${CURRENT_DIR}/.claude/statusline.js" ]; then
+	if [ -e "${HOME}/.claude/statusline.js" -o -h "${HOME}/.claude/statusline.js" ]; then
+		echo ".claude/statusline.js already exists."
+		if [ "$replace" -o "$uninstall" ]; then
+			echo "remove .claude/statusline.js."
+			rm -rf "${HOME}/.claude/statusline.js"
+		fi
+	fi
+
+	if [ ! "$uninstall" -a ! -e "${HOME}/.claude/statusline.js" ]; then
+		echo "create symlink .claude/statusline.js to ${HOME}/.claude/."
+		ln -s "${CURRENT_DIR}/.claude/statusline.js" "${HOME}/.claude/statusline.js"
+	fi
+fi

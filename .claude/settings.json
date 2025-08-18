@@ -1,5 +1,4 @@
 {
-  "model": "opus",
   "permissions": {
     "allow": [
       "Bash(ls:*)",
@@ -35,5 +34,10 @@
     "deny": [
       "Bash(rm -rf:*)"
     ]
+  },
+  "model": "opusplan",
+  "statusLine": {
+    "type": "command",
+    "command": "node ~/.claude/statusline.js"
   }
 }
