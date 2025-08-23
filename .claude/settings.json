@@ -32,7 +32,7 @@
       "WebFetch(domain:nextjs.org)"
     ],
     "deny": [
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf ~:*)"
     ]
   },
   "model": "opusplan",
