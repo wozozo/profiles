@@ -1,11 +1,14 @@
-# theme = Banana Blueberry
 font-family = Fira Code
+font-family = "Hiragino Kaku Gothic ProN"
 # font-family = Firple Regular
 font-feature = -dlig
 
 # background-opacity = 0.95
 # background-blur-radius = 20
 macos-titlebar-style = transparent
+
+# adjust-cell-width = 5%
+adjust-cell-height = 20%
 
 cursor-style = block
 
