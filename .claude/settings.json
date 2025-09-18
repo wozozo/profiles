@@ -29,7 +29,8 @@
       "WebFetch(domain:stackoverflow.com)",
       "WebFetch(domain:developer.mozilla.org)",
       "WebFetch(domain:npmjs.com)",
-      "WebFetch(domain:nextjs.org)"
+      "WebFetch(domain:nextjs.org)",
+      "mcp__serena__*"
     ],
     "deny": [
       "Bash(rm -rf ~:*)"
